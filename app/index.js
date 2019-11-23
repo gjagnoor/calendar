@@ -7,12 +7,24 @@ import './index.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Calendar from './components/calendar.js';
+import Notes from './components/notes.js';
+
 
 class Main extends React.Component {
 
   render () {
     return (
-      <h1>Hello React!</h1>
+      <div id="container-0">
+        <div id="container-0-1">
+          <Notes />
+        </div>
+        
+        <div id="container-0-2">
+          <Calendar />
+        </div>
+      </div>
+
     );
   }
 }
