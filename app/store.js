@@ -60,6 +60,7 @@ const SET_MONTH = 'SET_MONTH';
 const WRITE_NOTE = 'WRITE_NOTE';
 const ADD_NOTE = 'ADD_NOTE';
 const SET_DATE_NUM = 'SET_DATE_NUM';
+const DELETE_NOTE = 'DELETE_NOTE';
 
 // action creators
 export function set_year (year) {
@@ -93,6 +94,11 @@ export function set_date_num (num) {
     return action;
 }
 
+export function delete_note (notes, date) {
+    const action = {type: DELETE_NOTE, notes, date};
+    return action;
+}
+
 // reducer
 function reducer (state = initialState, action) {
     switch (action.type) {
@@ -122,7 +128,7 @@ function reducer (state = initialState, action) {
                     ...state,
                     notes: {
                         ...state.notes,
-                        [action.date]: [...state.notes[action.date], action.note_to_add]
+                        [action.date]: action.notes
                     }
                 }
             } else {
@@ -138,6 +144,14 @@ function reducer (state = initialState, action) {
             return {
                 ...state,
                 date_num: action.num
+            }
+        case 'DELETE_NOTE':
+            return {
+                ...state,
+                notes: {
+                    ...state.notes,
+                    [action.date]: [...action.notes]
+                }
             }
         default: 
             return state;

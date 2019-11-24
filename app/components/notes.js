@@ -1,5 +1,5 @@
 import React from 'react';
-import store, {write_note, add_note} from '../store.js';
+import store, {write_note, add_note, delete_note} from '../store.js';
 
 
 class Notes extends React.Component {
@@ -9,6 +9,7 @@ class Notes extends React.Component {
         this.state = store.getState();
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleChange (evt) {
@@ -23,6 +24,14 @@ class Notes extends React.Component {
         store.dispatch(add_note(this.state.note_to_add, date_clicked));
         store.dispatch(write_note(""));
 
+        evt.preventDefault();
+    }
+
+    handleClick(evt) {
+        var date = [this.state.year, this.state.month, this.state.date_num].join("_");
+        var notes = this.state.notes[date].slice(0);
+        notes.splice(evt.target.value,1);
+        store.dispatch(delete_note(notes, date))
         evt.preventDefault();
     }
 
@@ -65,7 +74,7 @@ class Notes extends React.Component {
                                     return (
                                         <div id ="task" key={i}>
                                             <div>
-                                                <button>
+                                                <button name="delete-button" value={i} onClick={this.handleClick}>
                                                     X
                                                 </button>
                                             </div>
