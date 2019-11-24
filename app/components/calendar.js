@@ -1,56 +1,56 @@
 import React from 'react';
-import generate_active_month_data from '../helpers/generate_active_month.js';
+import store, {set_year, set_active_month, set_month, set_date_num} from '../store.js';
   
   class Calendar extends React.Component {
     
     constructor (props) {
       super (props);
-      this.state = {
-        weekdays : ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"],
-        months: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        year: 2019,
-        month: 10,
-        active_month: []
-      }
+
+      this.state = store.getState();
+
       this.handleChange = this.handleChange.bind(this);
-      this.handleClick = this.handleClick.bind(this);
+      this.handleClick_month = this.handleClick_month.bind(this);
+      this.handleClick_num = this.handleClick_num.bind(this);
     }
 
     handleChange (evt) {
-      console.log(evt.target.value)
       var date = new Date(evt.target.value, this.state.month, 1);
-      var active_month = generate_active_month_data(date);
-      this.setState({
-        [evt.target.name] : evt.target.value,
-        active_month
-      })
+
+      store.dispatch(set_year(evt.target.value));
+      store.dispatch(set_active_month(date));
+
       evt.preventDefault();
     }
 
-    handleClick (evt) {
-      var month = this.state.months.indexOf(evt.target.value);
-      var date = new Date(this.state.year, month, 1);
-      var active_month = generate_active_month_data(date);
-      this.setState({
-        [evt.target.name]: month,
-        active_month
-      })
+    handleClick_month (evt) {
+      var month_index = this.state.months.indexOf(evt.target.value);
+      var date = new Date(this.state.year, month_index, 1);
+      store.dispatch(set_month(month_index));
+      store.dispatch(set_active_month(date));
+      evt.preventDefault();
+    }
+
+    handleClick_num (evt) {
+      store.dispatch(set_date_num(evt.target.value));
       evt.preventDefault();
     }
     
     componentWillMount () {
+      this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
+
       var today = new Date();
-      var active_month = generate_active_month_data(today)
-     
-      this.setState({
-          year: today.getFullYear(),
-          month: today.getMonth(), 
-          active_month: active_month
-      })
+      store.dispatch(set_year(today.getFullYear()));
+      store.dispatch(set_month(today.getMonth()));
+      store.dispatch(set_active_month(today));
       
+    }
+
+    componentWillUnMount() {
+      this.unsubscribe();
     }
     
     render () {
+      console.log('calendar state', this.state);
       return (
         <div id="container-2">
           
@@ -71,13 +71,13 @@ import generate_active_month_data from '../helpers/generate_active_month.js';
           <div id="months">
             {
               this.state.months.map((month, i) => {
-                return <button name="month" key={i} value={month} onClick={this.handleClick}> {month} </button>
+                return <button name="month" key={i} value={month} onClick={this.handleClick_month}> {month} </button>
               })
             }
           </div>
           
           <div id="calendar">
-            <div>
+            <div id="calendar-table">
               <table>
                   <tbody>
                       <tr>
@@ -93,7 +93,11 @@ import generate_active_month_data from '../helpers/generate_active_month.js';
                               return (<tr key={i}>
                                   {
                                   week.map((day, i) => { 
-                                      return <td key={i}> {day} </td>
+                                      return <td key={i}> 
+                                        <button name="day" value={day} onClick = {this.handleClick_num}>
+                                        {day} 
+                                        </button>
+                                      </td>
                                   })
                                   }
                               </tr>)
