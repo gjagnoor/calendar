@@ -128,7 +128,7 @@ function reducer (state = initialState, action) {
                     ...state,
                     notes: {
                         ...state.notes,
-                        [action.date]: action.notes
+                        [action.date]: [...state.notes[action.date], action.note_to_add]
                     }
                 }
             } else {
