@@ -1,5 +1,5 @@
 import React from 'react';
-import store, {set_year, set_active_month, set_month, set_date_num} from '../store.js';
+import store, {set_active_month, set_calendar_date} from '../store.js';
   
   class Calendar extends React.Component {
     
@@ -9,40 +9,35 @@ import store, {set_year, set_active_month, set_month, set_date_num} from '../sto
       this.state = store.getState();
 
       this.handleChange = this.handleChange.bind(this);
-      this.handleClick_month = this.handleClick_month.bind(this);
-      this.handleClick_num = this.handleClick_num.bind(this);
+      this.handleClick = this.handleClick.bind(this);
     }
 
     handleChange (evt) {
-      var date = new Date(evt.target.value, this.state.month, 1);
-
-      store.dispatch(set_year(evt.target.value));
+      var date = [evt.target.value, this.state.calendar_date[1], this.state.calendar_date[2]];
+      
+      store.dispatch(set_calendar_date(date));
       store.dispatch(set_active_month(date));
 
       evt.preventDefault();
     }
 
-    handleClick_month (evt) {
-      var month_index = this.state.months.indexOf(evt.target.value);
-      var date = new Date(this.state.year, month_index, 1);
-      store.dispatch(set_month(month_index));
+    handleClick (evt) {
+      console.log(this.state.calendar_date[0]);
+      if (evt.target.name === 'month') {
+        var date = [this.state.calendar_date[0], evt.target.value, this.state.calendar_date[2]];
+      } else {
+        var date = [this.state.calendar_date[0], this.state.calendar_date[1], evt.target.value];
+      }
+      
+      store.dispatch(set_calendar_date(date));
       store.dispatch(set_active_month(date));
-      evt.preventDefault();
-    }
-
-    handleClick_num (evt) {
-      store.dispatch(set_date_num(evt.target.value));
       evt.preventDefault();
     }
     
     componentWillMount () {
-      this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
-
-      var today = new Date();
-      store.dispatch(set_year(today.getFullYear()));
-      store.dispatch(set_month(today.getMonth()));
-      store.dispatch(set_active_month(today));
-      
+      this.unsubscribe = store.subscribe(() => this.setState(store.getState()));  
+      store.dispatch(set_active_month(this.state.calendar_date));
+        
     }
 
     componentWillUnMount() {
@@ -58,7 +53,7 @@ import store, {set_year, set_active_month, set_month, set_date_num} from '../sto
             
             <div id="year">
               <form>
-                <input name="year" type="number" value={this.state.year} onChange={this.handleChange} />
+                <input name="year" type="number" value={this.state.calendar_date[0]} onChange={this.handleChange} />
               </form>
             </div>
 
@@ -71,7 +66,7 @@ import store, {set_year, set_active_month, set_month, set_date_num} from '../sto
           <div id="months">
             {
               this.state.months.map((month, i) => {
-                return <button name="month" key={i} value={month} onClick={this.handleClick_month}> {month} </button>
+                return <button name="month" key={i} value={i} onClick={this.handleClick}> {month} </button>
               })
             }
           </div>
@@ -94,7 +89,7 @@ import store, {set_year, set_active_month, set_month, set_date_num} from '../sto
                                   {
                                   week.map((day, i) => { 
                                       return <td key={i}> 
-                                        <button name="day" value={day} onClick = {this.handleClick_num}>
+                                        <button name="day" value={day} onClick = {this.handleClick}>
                                         {day} 
                                         </button>
                                       </td>

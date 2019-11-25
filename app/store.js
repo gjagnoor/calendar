@@ -40,11 +40,9 @@ var initialState = {
 
 // initial state 
 var initialState = {
-    weekdays : ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"],
-    months: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    year: 2019,
-    month: 10,
-    date_num: 23,
+    weekdays : ["Sun", "Mon","Tue","Wed","Thurs","Fri","Sat"],
+    months: [null, "Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    calendar_date: [2019, 11, 23], // year, month, date
     active_month: [],
     note_to_add: '',
     notes: {
@@ -54,28 +52,24 @@ var initialState = {
 }
 
 // action types 
-const SET_YEAR = 'SET_YEAR';
+const SET_CALENDAR_DATE = 'SET_CALENDAR_DATE';
 const SET_ACTIVE_MONTH = 'SET_ACTIVE_MONTH';
-const SET_MONTH = 'SET_MONTH';
+// const SET_MONTH = 'SET_MONTH';
 const WRITE_NOTE = 'WRITE_NOTE';
 const ADD_NOTE = 'ADD_NOTE';
-const SET_DATE_NUM = 'SET_DATE_NUM';
+// const SET_DATE_NUM = 'SET_DATE_NUM';
 const DELETE_NOTE = 'DELETE_NOTE';
 
 // action creators
-export function set_year (year) {
-    const action = { type: SET_YEAR, year };
+export function set_calendar_date (date) {
+    const action = { type: SET_CALENDAR_DATE, date };
     return action;
 }
 
 export function set_active_month (date) {
+    console.log(date)
     var active_month = generate_active_month_data(date);
     const action = {type : SET_ACTIVE_MONTH, active_month};
-    return action;
-}
-
-export function set_month (month_index) {
-    const action = {type: SET_MONTH, month_index};
     return action;
 }
 
@@ -89,11 +83,6 @@ export function add_note (note_to_add, date) {
     return action;
 }
 
-export function set_date_num (num) {
-    const action = {type: SET_DATE_NUM, num};
-    return action;
-}
-
 export function delete_note (notes, date) {
     const action = {type: DELETE_NOTE, notes, date};
     return action;
@@ -102,20 +91,15 @@ export function delete_note (notes, date) {
 // reducer
 function reducer (state = initialState, action) {
     switch (action.type) {
-        case 'SET_YEAR': 
+        case 'SET_CALENDAR_DATE': 
             return {
                 ...state,
-                year: action.year
+                calendar_date: action.date
             }
         case 'SET_ACTIVE_MONTH':
             return {
                 ...state,
                 active_month: action.active_month
-            }
-        case 'SET_MONTH':
-            return {
-                ...state,
-                month: action.month_index
             }
         case 'WRITE_NOTE':
             return {
@@ -140,11 +124,6 @@ function reducer (state = initialState, action) {
                     }
                 }
             }           
-        case 'SET_DATE_NUM':
-            return {
-                ...state,
-                date_num: action.num
-            }
         case 'DELETE_NOTE':
             return {
                 ...state,
