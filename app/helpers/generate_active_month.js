@@ -1,18 +1,15 @@
 function generate_active_month_data (calendar_date) {
-      // set date to 1st of the month
-      console.log('calendar date in generate active month', calendar_date)
+      
+      // set date to 1st of the month 
       var date = new Date(calendar_date);
       date.setDate(1);
       
       
-      // get the day and the dates 
+      // get the day and the dates - eg. 5 and [1,2,3...31]
       var [day, dates_arr] = [date.getDay(), [...Array(31).keys()]];
       dates_arr = dates_arr.slice(1)
-      // console.log(day); // 5
-      // console.log(dates_arr) //[1,2,3,...]
 
-      // set first week
-      // add 0s from index 0 to index 5 
+      // set first week - eg. add 0s from index 0 to index 5 
       for (var i = 0; i < day ; i++) {
         dates_arr.unshift(null);
       }
@@ -24,7 +21,6 @@ function generate_active_month_data (calendar_date) {
         if (i % 7 === 0 && i !== 0) {
           split_point = i; // var imp for semantics
           var tmp_arr = dates_arr.slice(next_start_point, split_point);
-          console.log(tmp_arr)
           active_month.push(tmp_arr);
           next_start_point = i;
         }     
