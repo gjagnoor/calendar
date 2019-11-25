@@ -1,17 +1,15 @@
 function generate_active_month_data (calendar_date) {
       // set date to 1st of the month
-      // calendar_date[1] = Number(calendar_date[1]) + 1;
       console.log('calendar date in generate active month', calendar_date)
       var date = new Date(calendar_date);
       date.setDate(1);
-      console.log('updated date in generate active month', date);
       
       
       // get the day and the dates 
       var [day, dates_arr] = [date.getDay(), [...Array(31).keys()]];
       dates_arr = dates_arr.slice(1)
-      console.log(day); // 5
-      console.log(dates_arr) //[1,2,3,...]
+      // console.log(day); // 5
+      // console.log(dates_arr) //[1,2,3,...]
 
       // set first week
       // add 0s from index 0 to index 5 
