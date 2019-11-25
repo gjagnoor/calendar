@@ -85,8 +85,7 @@ import store, {set_active_month, set_calendar_date} from '../store/store.js';
                       
                       {
                         this.state.calendar.active_month.map((week, i) => {
-                            return (
-                              <tr key={i}>
+                            return (<tr key={i}>
                                 {
                                   week.map((day, i) => { 
                                       return <td key={i}> 
@@ -96,8 +95,7 @@ import store, {set_active_month, set_calendar_date} from '../store/store.js';
                                       </td>
                                   })
                                 }
-                            ` </tr>
-                            )
+                            </tr>)
                         })
                       }
                 </tbody>
