@@ -51,13 +51,13 @@ class Notes extends React.Component {
                 <div id="container-1-1">
                     <div id="date">
                         <div>
-                            <h1>{this.state.months[this.state.month]}</h1>
+                            <h1>{this.state.months[this.state.calendar_date[1]]}</h1>
                         </div>
                         <div>
-                            <h1>{this.state.date_num}</h1>
+                            <h1>{this.state.calendar_date[2]}</h1>
                         </div>
                         <div>
-                            <h1>{this.state.year}</h1>
+                            <h1>{this.state.calendar_date[0]}</h1>
                         </div>
                     </div>
 
