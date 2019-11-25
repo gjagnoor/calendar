@@ -32,7 +32,6 @@ export function set_calendar_date (date) {
 }
 
 export function set_active_month (date) {
-    console.log(date)
     var active_month = generate_active_month_data(date);
     const action = {type : SET_ACTIVE_MONTH, active_month};
     return action;
