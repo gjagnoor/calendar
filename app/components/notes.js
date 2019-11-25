@@ -29,7 +29,6 @@ class Notes extends React.Component {
 
     handleClick(evt) {
         var date = this.state.calendar_date.join("_");
-        console.log(date);
         var active_notes = this.state.active_notes[date].slice(0);
         active_notes.splice(evt.target.value,1);
         store.dispatch(delete_note(active_notes, date))
@@ -45,7 +44,6 @@ class Notes extends React.Component {
     }
 
     render () {
-        console.log(this.state.note_to_add);
         var date = this.state.calendar_date.join("_")
         return (
             <div id="container-1">
@@ -87,7 +85,11 @@ class Notes extends React.Component {
                                             </div>
                                         </div>
                                     )
-                                }) : (<div> <p> Nothing today. You sure you're not forgetting something? </p></div>)
+                                }) : (
+                                    <div> 
+                                        <p> Nothing today. You sure you're not forgetting something? </p>
+                                    </div>
+                                )
                             }
                     </div>
                 </div>

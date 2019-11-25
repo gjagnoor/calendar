@@ -22,7 +22,7 @@ import store, {set_active_month, set_calendar_date} from '../store.js';
     }
 
     handleClick (evt) {
-      console.log(this.state.calendar_date[0]);
+
       if (evt.target.name === 'month') {
         var date = [this.state.calendar_date[0], evt.target.value, this.state.calendar_date[2]];
       } else {
@@ -35,6 +35,7 @@ import store, {set_active_month, set_calendar_date} from '../store.js';
     }
     
     componentWillMount () {
+
       this.unsubscribe = store.subscribe(() => this.setState(store.getState()));  
       store.dispatch(set_active_month(this.state.calendar_date));
         
@@ -77,16 +78,16 @@ import store, {set_active_month, set_calendar_date} from '../store.js';
                   <tbody>
                       <tr>
                           {
-                          this.state.weekdays.map((weekday, i) => {
-                              return <th key={i}> {weekday} </th>
-                          })             
+                            this.state.weekdays.map((weekday, i) => {
+                                return <th key={i}> {weekday} </th>
+                            })             
                           }
                       </tr>
                       
                       {
-                          this.state.active_month.map((week, i) => {
-                              return (<tr key={i}>
-                                  {
+                        this.state.active_month.map((week, i) => {
+                            return (<tr key={i}>
+                                {
                                   week.map((day, i) => { 
                                       return <td key={i}> 
                                         <button name="day" value={day} onClick = {this.handleClick}>
@@ -94,9 +95,9 @@ import store, {set_active_month, set_calendar_date} from '../store.js';
                                         </button>
                                       </td>
                                   })
-                                  }
-                              </tr>)
-                          })
+                                }
+                            </tr>)
+                        })
                       }
                 </tbody>
               </table>
