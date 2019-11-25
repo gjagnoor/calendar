@@ -1,0 +1,54 @@
+// notes component
+@import './notes/date.scss';
+@import './notes/notes.scss';
+@import './notes/note_form.scss';
+@import './notes/active_notes.scss';
+
+// calendar component
+@import './calendar/calendar_header.scss';
+@import './calendar/calendar.scss';
+@import './calendar/dates.scss';
+@import './calendar/months.scss';
+
+
+// styles shared by notes and calendar component
+body {
+    background-color: lightblue;
+}
+
+#container-0 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 1px solid white;
+    padding: 5%;
+}
+
+#container-0-1 {
+    width: 20em;
+    border: 1px solid white;
+}
+
+#calendar {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background-color: lightblue;
+    // border-radius: 50%;
+    border: none;
+}
+
+button:focus {
+    outline-color: lightcoral;
+    outline-width: 0.01em;
+    outline-style: solid;
+}
+
+input {
+    font-size: 1em;
+}
+
+
+

@@ -3,7 +3,7 @@
 // we can import scss and webpack will build it out into css!
 // Don't worry too much about how this happens for now - but you can feel
 // free to write any scss you want now!
-import './index.scss';
+import './styles/index.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
