@@ -26,8 +26,7 @@ function generate_active_month_data (calendar_date) {
         }     
       }
       
-      active_month.push(dates_arr.slice(next_start_point));
-      
+      active_month.push(dates_arr.slice(next_start_point));      
       return active_month;
   }
 

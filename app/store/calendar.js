@@ -1,4 +1,4 @@
-import generate_active_month_data from '../helpers/generate_active_month.js';
+import generate_active_month_data from './helpers/generate_active_month.js';
 
 // reorganize state
 /*

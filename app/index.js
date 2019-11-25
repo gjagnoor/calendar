@@ -7,8 +7,8 @@ import './index.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Calendar from './components/calendar.js';
-import Notes from './components/notes.js';
+import Calendar from './components/calendar/calendar.js';
+import Notes from './components/notes/notes.js';
 import store from './store/store.js';
 
 // to import store and connect it to the main component so child components can have access to state?
@@ -18,6 +18,7 @@ class Main extends React.Component {
   render () {
     return (
       <div id="container-0">
+
         <div id="container-0-1">
           <Notes />
         </div>
@@ -25,6 +26,7 @@ class Main extends React.Component {
         <div id="container-0-2">
           <Calendar />
         </div>
+
       </div>
 
     );
