@@ -33,7 +33,7 @@ class Note_Form extends React.Component {
 
     render () {
         return (
-            <div id = "notes-form">
+            <div id="notes-form">
                 <form onSubmit={this.handleSubmit}>
                     <input name="note" type="text" value={this.state.notes.note_to_add} onChange={this.handleChange} />
                     <input id = "submit-button" name="submit" type="submit" value="+" />
