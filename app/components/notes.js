@@ -1,5 +1,5 @@
 import React from 'react';
-import store, {write_note, add_note, delete_note} from '../store.js';
+import store, {write_note, add_note, delete_note} from '../store/store.js';
 
 
 class Notes extends React.Component {
@@ -20,16 +20,16 @@ class Notes extends React.Component {
     }
  
     handleSubmit(evt) {
-        var date_clicked = this.state.calendar_date.join("_");
-        store.dispatch(add_note(this.state.note_to_add, date_clicked));
+        var date_clicked = this.state.calendar.calendar_date.join("_");
+        store.dispatch(add_note(this.state.notes.note_to_add, date_clicked));
         store.dispatch(write_note(""));
 
         evt.preventDefault();
     }
 
     handleClick(evt) {
-        var date = this.state.calendar_date.join("_");
-        var active_notes = this.state.active_notes[date].slice(0);
+        var date = this.state.calendar.calendar_date.join("_");
+        var active_notes = this.state.notes.active_notes[date].slice(0);
         active_notes.splice(evt.target.value,1);
         store.dispatch(delete_note(active_notes, date))
         evt.preventDefault();
@@ -44,32 +44,33 @@ class Notes extends React.Component {
     }
 
     render () {
-        var date = this.state.calendar_date.join("_")
+        console.log(this.state);
+        var date = this.state.calendar.calendar_date.join("_")
         return (
             <div id="container-1">
                 <div id="container-1-1">
                     <div id="date">
                         <div>
-                            <h1>{this.state.months[this.state.calendar_date[1]]}</h1>
+                            <h1>{this.state.calendar.months[this.state.calendar.calendar_date[1]]}</h1>
                         </div>
                         <div>
-                            <h1>{this.state.calendar_date[2]}</h1>
+                            <h1>{this.state.calendar.calendar_date[2]}</h1>
                         </div>
                         <div>
-                            <h1>{this.state.calendar_date[0]}</h1>
+                            <h1>{this.state.calendar.calendar_date[0]}</h1>
                         </div>
                     </div>
 
                     <div id = "notes-form">
                         <form onSubmit={this.handleSubmit}>
-                            <input name="note" type="text" value={this.state.note_to_add} onChange={this.handleChange} />
+                            <input name="note" type="text" value={this.state.notes.note_to_add} onChange={this.handleChange} />
                             <input id = "submit-button" name="submit" type="submit" value="+" />
                         </form>
                     </div>
 
                     <div id = "notes">
                             {                            
-                                this.state.active_notes[date] ? this.state.active_notes[date].map((note, i)=> {
+                                this.state.notes.active_notes[date] ? this.state.notes.active_notes[date].map((note, i)=> {
                                     return (
                                         <div id ="task" key={i}>
                                             <div>
