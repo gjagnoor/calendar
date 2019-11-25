@@ -3,40 +3,7 @@ import generate_active_month_data from './helpers/generate_active_month.js';
 
 // reorganize state
 /*
-var initialState = {
-    weekdays : ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"],
-    months: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    user_data: {
-        id: 7,
-        form_data: { // while not a form but a selecting a button, etc can be included in form data???
-            note_to_add: "",
-            calendar_year: 2019,
-            selected_date: [2019, 10, 23, 6], // [year, month, date, day]
-            selected_calendar_month_data: [], // 5 weeks
-        },
-        notes: [
-            {
-                id: 1
-                note: "note 23-1",
-                date: "2019_10_23",
-                completed: false
-            }, 
-            {
-                id: 2
-                note: "note 23-2",
-                date: "2019_10_23",
-                completed: true
-            }, 
-            {
-                id: 3
-                note: "note 24-1",
-                date: "2019_10_24",
-                completed: false
-            }
-        ]
-    }
-}
-*/ 
+*/
 
 // initial state 
 var initialState = {
@@ -45,7 +12,7 @@ var initialState = {
     calendar_date: [2019, 11, 23], // year, month, date
     active_month: [],
     note_to_add: '',
-    notes: {
+    active_notes: {
         "2019_10_23" : ["note 23-1", "note 23-2"],
         "2019_10_24" : ["note 24-1"]
     }
@@ -54,10 +21,8 @@ var initialState = {
 // action types 
 const SET_CALENDAR_DATE = 'SET_CALENDAR_DATE';
 const SET_ACTIVE_MONTH = 'SET_ACTIVE_MONTH';
-// const SET_MONTH = 'SET_MONTH';
 const WRITE_NOTE = 'WRITE_NOTE';
 const ADD_NOTE = 'ADD_NOTE';
-// const SET_DATE_NUM = 'SET_DATE_NUM';
 const DELETE_NOTE = 'DELETE_NOTE';
 
 // action creators
@@ -83,8 +48,8 @@ export function add_note (note_to_add, date) {
     return action;
 }
 
-export function delete_note (notes, date) {
-    const action = {type: DELETE_NOTE, notes, date};
+export function delete_note (active_notes, date) {
+    const action = {type: DELETE_NOTE, active_notes, date};
     return action;
 }
 
@@ -107,19 +72,19 @@ function reducer (state = initialState, action) {
                 note_to_add: action.note
             }
         case 'ADD_NOTE':
-            if (state.notes[action.date]) {
+            if (state.active_notes[action.date]) {
                 return {
                     ...state,
-                    notes: {
-                        ...state.notes,
-                        [action.date]: [...state.notes[action.date], action.note_to_add]
+                    active_notes: {
+                        ...state.active_notes,
+                        [action.date]: [...state.active_notes[action.date], action.note_to_add]
                     }
                 }
             } else {
                 return {
                     ...state,
-                    notes: {
-                        ...state.notes,
+                    active_notes: {
+                        ...state.active_notes,
                         [action.date]: [action.note_to_add]
                     }
                 }
@@ -127,9 +92,9 @@ function reducer (state = initialState, action) {
         case 'DELETE_NOTE':
             return {
                 ...state,
-                notes: {
-                    ...state.notes,
-                    [action.date]: [...action.notes]
+                active_notes: {
+                    ...state.active_notes,
+                    [action.date]: [...action.active_notes]
                 }
             }
         default: 

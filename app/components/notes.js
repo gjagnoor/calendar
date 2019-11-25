@@ -20,7 +20,7 @@ class Notes extends React.Component {
     }
  
     handleSubmit(evt) {
-        var date_clicked = [this.state.year, this.state.month, this.state.date_num].join("_");
+        var date_clicked = this.state.calendar_date.join("_");
         store.dispatch(add_note(this.state.note_to_add, date_clicked));
         store.dispatch(write_note(""));
 
@@ -28,10 +28,11 @@ class Notes extends React.Component {
     }
 
     handleClick(evt) {
-        var date = [this.state.year, this.state.month, this.state.date_num].join("_");
-        var notes = this.state.notes[date].slice(0);
-        notes.splice(evt.target.value,1);
-        store.dispatch(delete_note(notes, date))
+        var date = this.state.calendar_date.join("_");
+        console.log(date);
+        var active_notes = this.state.active_notes[date].slice(0);
+        active_notes.splice(evt.target.value,1);
+        store.dispatch(delete_note(active_notes, date))
         evt.preventDefault();
     }
 
@@ -45,7 +46,7 @@ class Notes extends React.Component {
 
     render () {
         console.log(this.state.note_to_add);
-        var date = [this.state.year, this.state.month, this.state.date_num].join("_")
+        var date = this.state.calendar_date.join("_")
         return (
             <div id="container-1">
                 <div id="container-1-1">
@@ -70,7 +71,7 @@ class Notes extends React.Component {
 
                     <div id = "notes">
                             {                            
-                                this.state.notes[date] ? this.state.notes[date].map((note, i)=> {
+                                this.state.active_notes[date] ? this.state.active_notes[date].map((note, i)=> {
                                     return (
                                         <div id ="task" key={i}>
                                             <div>
