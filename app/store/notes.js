@@ -1,3 +1,4 @@
+import delete_active_note from './helpers/delete_active_note';
 // reorganize state
 /*
 */
@@ -27,8 +28,9 @@ export function add_note (note_to_add, date) {
     return action;
 }
 
-export function delete_note (active_notes, date) {
-    const action = {type: DELETE_NOTE, active_notes, date};
+export function delete_note (i, active_notes, date) {
+    var [notes_after_deletion, transformed_date] = delete_active_note(i, active_notes, date);
+    const action = {type: DELETE_NOTE, notes_after_deletion, transformed_date};
     return action;
 }
 
@@ -63,7 +65,7 @@ export default function notes (state = initialState, action) {
                 ...state,
                 active_notes: {
                     ...state.active_notes,
-                    [action.date]: [...action.active_notes]
+                    [action.transformed_date]: [...action.notes_after_deletion]
                 }
             }
         default: 
