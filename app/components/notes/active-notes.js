@@ -9,7 +9,7 @@ class Active_Notes extends React.Component {
     }
 
     handleClick(evt) {
-        store.dispatch(delete_note(evt.target.value, this.state.notes.active_notes, this.state.calendar.calendar_date))
+        store.dispatch(delete_note(evt.target.value, this.state.active_notes.notes, this.state.calendar.calendar_date))
         evt.preventDefault();
     }
 
@@ -26,7 +26,7 @@ class Active_Notes extends React.Component {
         return (
             <div id = "notes">
                 {                            
-                    this.state.notes.active_notes[current_date] ? this.state.notes.active_notes[current_date].map((note, i)=> {
+                    this.state.active_notes.notes[current_date] ? this.state.active_notes.notes[current_date].map((note, i)=> {
                         return (
                             <div id ="task" key={i}>
                                 <div>
