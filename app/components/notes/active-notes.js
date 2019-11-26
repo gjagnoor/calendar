@@ -9,11 +9,7 @@ class Active_Notes extends React.Component {
     }
 
     handleClick(evt) {
-        console.log('testing github is still linked correctly')
-        var date = this.state.calendar.calendar_date.join("_");
-        var active_notes = this.state.notes.active_notes[date].slice(0);
-        active_notes.splice(evt.target.value,1);
-        store.dispatch(delete_note(active_notes, date))
+        store.dispatch(delete_note(evt.target.value, this.state.notes.active_notes, this.state.calendar.calendar_date))
         evt.preventDefault();
     }
 
