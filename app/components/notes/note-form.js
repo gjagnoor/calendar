@@ -16,7 +16,7 @@ class Note_Form extends React.Component {
     }
  
     handleSubmit(evt) {
-        var date_clicked = this.state.calendar.calendar_date.join("_");
+        var date_clicked = Object.values(this.state.calendar.calendar_date).join("_");
         store.dispatch(add_note(this.state.notes.note_to_add, date_clicked));
         store.dispatch(write_note(""));
         evt.preventDefault();
