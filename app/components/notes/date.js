@@ -21,13 +21,13 @@ class Date extends React.Component {
         return (
             <div id="date">
                 <div>
-                    <h1>{this.state.calendar.months[this.state.calendar.calendar_date[1]]}</h1>
+                    <h1>{this.state.calendar.months[this.state.calendar.calendar_date.month]}</h1>
                 </div>
                 <div>
-                    <h1>{this.state.calendar.calendar_date[2]}</h1>
+                    <h1>{this.state.calendar.calendar_date.date_num}</h1>
                 </div>
                 <div>
-                    <h1>{this.state.calendar.calendar_date[0]}</h1>
+                    <h1>{this.state.calendar.calendar_date.year}</h1>
                 </div>
             </div>
         )

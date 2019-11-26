@@ -9,9 +9,11 @@ class Months extends React.Component {
     }
 
     handleClick (evt) {
-        var date = [this.state.calendar.calendar_date[0], evt.target.value, this.state.calendar.calendar_date[2]];      
-        store.dispatch(set_calendar_date(date));
-        store.dispatch(set_active_month(date));
+        var new_month = evt.target.value;
+        var new_date = {...this.state.calendar.calendar_date};
+        new_date.month = new_month;
+        store.dispatch(set_calendar_date(new_date));
+        store.dispatch(set_active_month(new_date));
         evt.preventDefault();
     }
 

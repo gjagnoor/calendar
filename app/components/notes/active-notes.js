@@ -22,11 +22,11 @@ class Active_Notes extends React.Component {
     }
 
     render() {
-        var date = this.state.calendar.calendar_date.join("_")
+        var current_date = Object.values(this.state.calendar.calendar_date).join("_")
         return (
             <div id = "notes">
                 {                            
-                    this.state.notes.active_notes[date] ? this.state.notes.active_notes[date].map((note, i)=> {
+                    this.state.notes.active_notes[current_date] ? this.state.notes.active_notes[current_date].map((note, i)=> {
                         return (
                             <div id ="task" key={i}>
                                 <div>

@@ -1,4 +1,7 @@
 function generate_active_month_data (calendar_date) {
+
+      calendar_date = Object.values(calendar_date);
+      console.log('generate_active_month_data:::', calendar_date);
       
       // set date to 1st of the month 
       var date = new Date(calendar_date);

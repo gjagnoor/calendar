@@ -9,9 +9,11 @@ class Calendar_Header extends React.Component {
     }
 
     handleChange (evt) {
-        var date = [evt.target.value, this.state.calendar.calendar_date[1], this.state.calendar.calendar_date[2]];       
-        store.dispatch(set_calendar_date(date));
-        store.dispatch(set_active_month(date)); 
+        var new_year = evt.target.value;
+        var new_date = {...this.state.calendar.calendar_date}    
+        new_date.year = new_year;
+        store.dispatch(set_calendar_date(new_date));
+        store.dispatch(set_active_month(new_date)); 
         evt.preventDefault();
     }
 
@@ -28,7 +30,7 @@ class Calendar_Header extends React.Component {
             <div id="container-2-1">
                 <div id="year">
                     <form>
-                        <input name="year" type="number" value={this.state.calendar.calendar_date[0]} onChange={this.handleChange} />
+                        <input name="year" type="number" value={this.state.calendar.calendar_date.year} onChange={this.handleChange} />
                     </form>
                 </div>
                 <div id="title">

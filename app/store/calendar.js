@@ -8,7 +8,11 @@ import generate_active_month_data from './helpers/generate_active_month.js';
 var initialState = {
     weekdays : ["Sun", "Mon","Tue","Wed","Thurs","Fri","Sat"],
     months: [null, "Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"], // date object in JS has months from from 1...12
-    calendar_date: [2019, 11, 23], // [year, month, date]
+    calendar_date: {
+        year: 2019,
+        month: 11,
+        date_num: 25
+    },
     active_month: []
 }
 
