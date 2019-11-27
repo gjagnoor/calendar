@@ -44,10 +44,10 @@ var initialState = {
 const WRITE_NOTE = 'WRITE_NOTE';
 const ADD_NOTE = 'ADD_NOTE';
 const DELETE_NOTE = 'DELETE_NOTE';
+const MARK_NOTE_COMPLETE = 'MARK_NOTE_COMPLETE';
 
 // action creators
 export function write_note (note) {
-    console.log(note);
     const action = {type: WRITE_NOTE, note};
     return action;
 }
@@ -59,6 +59,11 @@ export function add_note (new_note) {
 
 export function delete_note (note_id) {
     const action = {type: DELETE_NOTE, note_id};
+    return action;
+}
+
+export function mark_note_complete(note_id) {
+    const action = { type: MARK_NOTE_COMPLETE, note_id};
     return action;
 }
 
@@ -82,6 +87,16 @@ export default function tasks (state = initialState, action) {
             return {
                 ...state,
                 notes: state.notes.filter((note) => note.id !== Number(action.note_id))
+            }
+        case 'MARK_NOTE_COMPLETE':
+            return {
+                ...state,
+                notes: state.notes.map((note) => {
+                    if (note.id === Number(action.note_id)) {
+                        note.completed = true
+                    }
+                    return note;
+                })
             }
         default: 
             return state;
