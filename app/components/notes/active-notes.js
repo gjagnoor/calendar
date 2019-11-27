@@ -1,11 +1,19 @@
 import React from 'react';
-import store, {delete_note} from '../../store/store.js';
+import store, {delete_note, add_to_complete} from '../../store/store.js';
 
 class Active_Notes extends React.Component {
     constructor (props) {
         super (props);
         this.state = store.getState();
         this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(evt) {
+        var note_index = evt.target.value;
+        var transformed_date = Object.values(this.state.calendar.calendar_date).join('_');
+        var note = this.state.active_notes.notes[transformed_date][note_index];
+        store.dispatch(add_to_complete(note, transformed_date));
     }
 
     handleClick(evt) {
@@ -38,7 +46,7 @@ class Active_Notes extends React.Component {
                                     {note}
                                 </div>
                                 <div>
-                                    <input type="checkbox" />
+                                    <input type="checkbox" value={i} onChange={this.handleChange} />
                                 </div>
                             </div>
                         )
