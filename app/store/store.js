@@ -1,7 +1,6 @@
 import { createStore, combineReducers } from 'redux';
 import calendar from './calendar.js';
-import active_notes, {new_reducers} from './notes/active_notes.js';
-import completed_notes from './notes/completed_notes.js';
+import tasks from './notes.js';
 
 // reorganize state
 /*
@@ -10,12 +9,10 @@ import completed_notes from './notes/completed_notes.js';
 // create store object 
 const store = createStore(combineReducers({
     calendar, 
-    active_notes,
-    completed_notes
+    tasks
 }));
 
 // export store 
 export default store;
 export * from './calendar';
-export * from './notes/active_notes.js';
-export * from './notes/completed_notes.js';
+export * from './notes.js';
