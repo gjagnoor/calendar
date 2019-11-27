@@ -1,4 +1,5 @@
-import delete_active_note from './helpers/delete_active_note';
+import delete_active_note from '../helpers/delete_active_note.js';
+
 // reorganize state
 /*
 */
@@ -6,7 +7,7 @@ import delete_active_note from './helpers/delete_active_note';
 // initial state 
 var initialState = {
     note_to_add: '',
-    active_notes: {
+    notes: {
         "2019_10_23" : ["note 23-1", "note 23-2"],
         "2019_10_24" : ["note 24-1"]
     }
@@ -35,7 +36,7 @@ export function delete_note (i, active_notes, date) {
 }
 
 // reducer
-export default function notes (state = initialState, action) {
+export default function active_notes (state = initialState, action) {
     switch (action.type) {
         case 'WRITE_NOTE':
             return {
@@ -43,19 +44,19 @@ export default function notes (state = initialState, action) {
                 note_to_add: action.note
             }
         case 'ADD_NOTE':
-            if (state.active_notes[action.date]) {
+            if (state.notes[action.date]) {
                 return {
                     ...state,
-                    active_notes: {
-                        ...state.active_notes,
-                        [action.date]: [...state.active_notes[action.date], action.note_to_add]
+                    notes: {
+                        ...state.notes,
+                        [action.date]: [...state.notes[action.date], action.note_to_add]
                     }
                 }
             } else {
                 return {
                     ...state,
-                    active_notes: {
-                        ...state.active_notes,
+                    notes: {
+                        ...state.notes,
                         [action.date]: [action.note_to_add]
                     }
                 }
@@ -63,8 +64,8 @@ export default function notes (state = initialState, action) {
         case 'DELETE_NOTE':
             return {
                 ...state,
-                active_notes: {
-                    ...state.active_notes,
+                notes: {
+                    ...state.notes,
                     [action.transformed_date]: [...action.notes_after_deletion]
                 }
             }

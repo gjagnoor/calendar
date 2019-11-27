@@ -17,7 +17,7 @@ class Note_Form extends React.Component {
  
     handleSubmit(evt) {
         var date_clicked = Object.values(this.state.calendar.calendar_date).join("_");
-        store.dispatch(add_note(this.state.notes.note_to_add, date_clicked));
+        store.dispatch(add_note(this.state.active_notes.note_to_add, date_clicked));
         store.dispatch(write_note(""));
         evt.preventDefault();
     }
@@ -35,7 +35,7 @@ class Note_Form extends React.Component {
         return (
             <div id="notes-form">
                 <form onSubmit={this.handleSubmit}>
-                    <input name="note" type="text" value={this.state.notes.note_to_add} onChange={this.handleChange} />
+                    <input name="note" type="text" value={this.state.active_notes.note_to_add} onChange={this.handleChange} />
                     <input id = "submit-button" name="submit" type="submit" value="+" />
                 </form>
             </div>
