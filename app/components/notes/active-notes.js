@@ -1,5 +1,5 @@
 import React from 'react';
-import store, {delete_note, add_to_complete, mark_note_complete} from '../../store/store.js';
+import store, {delete_note, mark_note_complete} from '../../store/store.js';
 
 class Active_Notes extends React.Component {
     constructor (props) {
