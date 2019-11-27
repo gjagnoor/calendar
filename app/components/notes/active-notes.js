@@ -1,24 +1,20 @@
 import React from 'react';
-import store, {delete_note, add_to_complete} from '../../store/store.js';
+import store, {delete_note, add_to_complete, mark_note_complete} from '../../store/store.js';
 
 class Active_Notes extends React.Component {
     constructor (props) {
         super (props);
         this.state = store.getState();
         this.handleClick = this.handleClick.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(evt) {
-        // var note_index = evt.target.value;
-        // var transformed_date = Object.values(this.state.calendar.calendar_date).join('_');
-        // var note = this.state.active_notes.notes[transformed_date][note_index];
-        // store.dispatch(add_to_complete(note, transformed_date));
     }
 
     handleClick(evt) {
         var note_id = evt.target.value;
-        store.dispatch(delete_note(note_id))
+        if (evt.target.checked === true && evt.target.name === 'marked_complete') {
+            store.dispatch(mark_note_complete(note_id));
+        } else {
+            store.dispatch(delete_note(note_id))
+        }
         evt.preventDefault();
     }
 
@@ -33,7 +29,6 @@ class Active_Notes extends React.Component {
     render() {
         var current_date = Object.values(this.state.calendar.calendar_date).join("_")
         var notes_on_date = this.state.tasks.notes.filter((note) => note.date === current_date && note.completed === false);
-        console.log(notes_on_date);
         return (
             <div id = "notes">
                 {                            
@@ -49,7 +44,7 @@ class Active_Notes extends React.Component {
                                     {note.name}
                                 </div>
                                 <div>
-                                    <input type="checkbox" value={note.id} onChange={this.handleChange} />
+                                    <input name = "marked_complete" type="checkbox" value={note.id} onClick={this.handleClick} />
                                 </div>
                             </div>
                         )
