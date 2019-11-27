@@ -1,11 +1,12 @@
 import React from 'react';
-import store, {mark_note_incomplete} from '../../store/store.js';
+import store, {delete_note, mark_note_incomplete} from '../../store/store.js';
 
 class Completed_Notes extends React.Component {
     constructor (props) {
         super (props);
         this.state = store.getState();
         this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleChange (evt) {
@@ -13,6 +14,12 @@ class Completed_Notes extends React.Component {
         if (evt.target.checked === false) {
             store.dispatch(mark_note_incomplete(note_id));
         }
+    }
+
+    handleClick (evt) {
+        var note_id = evt.target.value;
+        store.dispatch(delete_note(note_id));
+        evt.preventDefault();
     }
 
     componentWillMount() {
@@ -31,8 +38,12 @@ class Completed_Notes extends React.Component {
                 {
                     completed_notes_on_date ? completed_notes_on_date.map((note, i) => {
                         return (
-                            <div className='task incomplete' key={i}>
-                                
+                            <div className='task complete' key={i}>
+                                <div>
+                                    <button name="delete-button" value={note.id} onClick={this.handleClick}>
+                                        X
+                                    </button>
+                                </div>
                                 <div>
                                     {note.name}
                                 </div>
