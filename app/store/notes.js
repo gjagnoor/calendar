@@ -45,6 +45,7 @@ const WRITE_NOTE = 'WRITE_NOTE';
 const ADD_NOTE = 'ADD_NOTE';
 const DELETE_NOTE = 'DELETE_NOTE';
 const MARK_NOTE_COMPLETE = 'MARK_NOTE_COMPLETE';
+const MARK_NOTE_INCOMPLETE = 'MARK_NOTE_INCOMPLETE';
 
 // action creators
 export function write_note (note) {
@@ -64,6 +65,11 @@ export function delete_note (note_id) {
 
 export function mark_note_complete(note_id) {
     const action = { type: MARK_NOTE_COMPLETE, note_id};
+    return action;
+}
+
+export function mark_note_incomplete (note_id) {
+    const action = { type: MARK_NOTE_INCOMPLETE, note_id};
     return action;
 }
 
@@ -98,6 +104,16 @@ export default function tasks (state = initialState, action) {
                     return note;
                 })
             }
+        case 'MARK_NOTE_INCOMPLETE': 
+            return {
+                ...state, 
+                notes: state.notes.map((note) => {
+                    if (note.id === Number(action.note_id)) {
+                        note.completed = false
+                    }
+                    return note;
+                })
+            } 
         default: 
             return state;
     }
