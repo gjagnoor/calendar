@@ -10,14 +10,15 @@ class Active_Notes extends React.Component {
     }
 
     handleChange(evt) {
-        var note_index = evt.target.value;
-        var transformed_date = Object.values(this.state.calendar.calendar_date).join('_');
-        var note = this.state.active_notes.notes[transformed_date][note_index];
-        store.dispatch(add_to_complete(note, transformed_date));
+        // var note_index = evt.target.value;
+        // var transformed_date = Object.values(this.state.calendar.calendar_date).join('_');
+        // var note = this.state.active_notes.notes[transformed_date][note_index];
+        // store.dispatch(add_to_complete(note, transformed_date));
     }
 
     handleClick(evt) {
-        store.dispatch(delete_note(evt.target.value, this.state.active_notes.notes, this.state.calendar.calendar_date))
+        var note_id = evt.target.value;
+        store.dispatch(delete_note(note_id))
         evt.preventDefault();
     }
 
@@ -31,30 +32,28 @@ class Active_Notes extends React.Component {
 
     render() {
         var current_date = Object.values(this.state.calendar.calendar_date).join("_")
+        var notes_on_date = this.state.tasks.notes.filter((note) => note.date === current_date && note.completed === false);
+        console.log(notes_on_date);
         return (
             <div id = "notes">
                 {                            
-                    this.state.active_notes.notes[current_date] ? this.state.active_notes.notes[current_date].map((note, i)=> {
+                    notes_on_date ? notes_on_date.map((note, i)=> {
                         return (
                             <div id ="task" key={i}>
                                 <div>
-                                    <button name="delete-button" value={i} onClick={this.handleClick}>
+                                    <button name="delete-button" value={note.id} onClick={this.handleClick}>
                                         X
                                     </button>
                                 </div>
                                 <div>
-                                    {note}
+                                    {note.name}
                                 </div>
                                 <div>
-                                    <input type="checkbox" value={i} onChange={this.handleChange} />
+                                    <input type="checkbox" value={note.id} onChange={this.handleChange} />
                                 </div>
                             </div>
                         )
-                    }) : (
-                        <div> 
-                            <p> Nothing today. You sure you're not forgetting something? </p>
-                        </div>
-                    )
+                    }) : (null)
                 }
             </div>
         )

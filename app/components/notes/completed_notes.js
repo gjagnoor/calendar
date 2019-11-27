@@ -16,15 +16,15 @@ class Completed_Notes extends React.Component {
     }
 
     render () {
-        var date = Object.values(this.state.calendar.calendar_date).join('_');
-        console.log('state logging from completed_notes::::', this.state)
+        var transformed_current_date = Object.values(this.state.calendar.calendar_date).join('_');
+        var completed_notes_on_date = this.state.tasks.notes.filter((note) => note.date === transformed_current_date && note.completed === true);
         return (
             <div>
                 {
-                    this.state.completed_notes.notes[date] ? this.state.completed_notes.notes[date].map((note, i) => {
+                    completed_notes_on_date ? completed_notes_on_date.map((note, i) => {
                         return (
                             <div key={i}>
-                                {note}
+                                {note.name}
                             </div>
                         )
                     }) : (null)
