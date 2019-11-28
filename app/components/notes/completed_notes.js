@@ -31,8 +31,8 @@ class Completed_Notes extends React.Component {
     }
 
     render () {
-        var transformed_current_date = Object.values(this.state.calendar.calendar_date).join('_');
-        var completed_notes_on_date = this.state.tasks.notes.filter((note) => note.date === transformed_current_date && note.completed === true);
+        var current_date = this.state.calendar.calendar_date;
+        var completed_notes_on_date = this.state.tasks.notes.filter((note) => note.due_date === current_date && note.completed === true);
         return (
             <div>
                 {
@@ -48,7 +48,7 @@ class Completed_Notes extends React.Component {
                                     {note.name}
                                 </div>
                                 <div>
-                                    <input name = "marked_complete" type="checkbox" value={note.id} onChange = {this.handleChange} checked/>
+                                    <input className='checkbox' name = "marked_complete" type="checkbox" value={note.id} onChange = {this.handleChange} checked/>
                                 </div>
                             </div>
                         )

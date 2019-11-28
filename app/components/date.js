@@ -1,12 +1,16 @@
 import React from 'react';
-import store from '../../store/store.js';
+import store, {set_calendar_date} from '../store/store.js';
 
 class Date extends React.Component {
     constructor (props) {
         super (props);
         this.state = store.getState();
+        this.handleChange = this.handleChange.bind(this);
     }
 
+    handleChange (evt) {
+        store.dispatch(set_calendar_date(evt.target.value));        
+    }
 
     componentWillMount () {
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));  
@@ -17,17 +21,10 @@ class Date extends React.Component {
     }
 
     render () {
-        console.log(this.state);
         return (
             <div id="date">
                 <div>
-                    <h1>{this.state.calendar.months[this.state.calendar.calendar_date.month]}</h1>
-                </div>
-                <div>
-                    <h1>{this.state.calendar.calendar_date.date_num}</h1>
-                </div>
-                <div>
-                    <h1>{this.state.calendar.calendar_date.year}</h1>
+                    <input name="date" type="date" value={this.state.calendar.calendar_date} onChange = {this.handleChange} />
                 </div>
             </div>
         )
