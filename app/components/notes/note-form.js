@@ -13,8 +13,7 @@ class Note_Form extends React.Component {
     handleChange (evt) {
         // generate note data
         var new_note = {...this.state.tasks.note_to_add};
-        var notes = [...this.state.tasks.notes];
-        new_note.id = notes.slice().pop().id + 1;
+        new_note.id = this.state.tasks.notes[this.state.tasks.notes.length-1]['id'] + 1;
         evt.target.name === 'date' ? new_note.due_date = evt.target.value : new_note.due_date = this.state.calendar.calendar_date;
         evt.target.name === 'note' ? new_note.name = evt.target.value : new_note.name = new_note.name; 
         new_note.completed = false;
