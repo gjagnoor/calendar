@@ -28,21 +28,19 @@ class Active_Notes extends React.Component {
 
     render() {
         var current_date = this.state.calendar.calendar_date;
-        console.log(this.state);
         var notes_on_date = this.state.tasks.notes.filter((note) => note.due_date === current_date && note.completed === false);
-        console.log(this.state)
         return (
-            <div id = "notes">
+            <div className='flex-column-left snuggle-fit border-bottom'>
                 {                            
                     notes_on_date ? notes_on_date.map((note, i)=> {
                         return (
-                            <div className ="task" key={i}>
+                            <div className ="flex-row-left" key={i}>
                                 <div>
                                     <button name="delete-button" value={note.id} onClick={this.handleClick}>
-                                        X
+                                        -
                                     </button>
                                 </div>
-                                <div>
+                                <div id="note-name">
                                     {note.name}
                                 </div>
                                 <div>
