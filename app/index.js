@@ -17,12 +17,6 @@ class Main extends React.Component {
   render () {
     return (
       <div id="container-0">
-
-        <div id="container-0-1">
-          <div>
-            <Date />
-          </div>
-        </div>
         
         <div id="container-0-2">
           <Notes />

@@ -47,20 +47,18 @@ class Note_Form extends React.Component {
 
     render () {
         return (
-            <div id="notes-form">
-                <div>
-                    <form id="form" onSubmit={this.handleSubmit}>
-                        <div id="note_field">
-                            <input name="note" type="text" value={this.state.tasks.note_to_add.name} onChange={this.handleChange} />
-                        </div>
-                        <div id="date_field">
-                            <input name="date" type="date" value = {this.state.tasks.note_to_add.due_date} onChange={this.handleChange} />
-                        </div>
-                        <div id="submit_button">
-                            <input name="submit" type="submit" value="+" />
-                        </div>
-                    </form>
-                </div>
+            <div>
+                <form id="form" onSubmit={this.handleSubmit}>
+                    <div id="note_field">
+                        <input name="note" type="text" value={this.state.tasks.note_to_add.name} onChange={this.handleChange} />
+                    </div>
+                    <div id="date_field">
+                        <input name="date" type="date" value = {this.state.tasks.note_to_add.due_date} onChange={this.handleChange} />
+                    </div>
+                    <div id="submit_button">
+                        <input name="submit" type="submit" value="+" />
+                    </div>
+                </form>
             </div>
         )
     }
