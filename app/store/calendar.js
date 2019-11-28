@@ -1,4 +1,4 @@
-import {datestring, toiso} from './helpers/date_transformers.js';
+import {datestring, toiso, next_7_days} from './helpers/date_transformers.js';
 
 // reorganize state
 /*
@@ -6,7 +6,8 @@ import {datestring, toiso} from './helpers/date_transformers.js';
 
 // initial state 
 var initialState = {
-    calendar_date: datestring(Date.now())
+    calendar_date: datestring(Date.now()),
+    week: next_7_days(datestring(Date.now()))
 }
 
 // action types 
