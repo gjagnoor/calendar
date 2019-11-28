@@ -1,5 +1,5 @@
 import React from 'react';
-import store, {delete_note, mark_note_incomplete} from '../../store/store.js';
+import store, {delete_note, update_note} from '../../store/store.js';
 
 class Completed_Notes extends React.Component {
     constructor (props) {
@@ -11,8 +11,8 @@ class Completed_Notes extends React.Component {
 
     handleChange (evt) {
         var note_id = evt.target.value;
-        if (evt.target.checked === false) {
-            store.dispatch(mark_note_incomplete(note_id));
+        if (evt.target.checked === false && evt.target.name === 'incomplete') {
+            store.dispatch(update_note(note_id, 'incomplete'));
         }
     }
 
@@ -48,7 +48,7 @@ class Completed_Notes extends React.Component {
                                     {note.name}
                                 </div>
                                 <div>
-                                    <input className='checkbox' name = "marked_complete" type="checkbox" value={note.id} onChange = {this.handleChange} checked/>
+                                    <input className='checkbox' name = "incomplete" type="checkbox" value={note.id} onChange = {this.handleChange} checked/>
                                 </div>
                             </div>
                         )
