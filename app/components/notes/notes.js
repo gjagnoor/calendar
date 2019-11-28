@@ -15,11 +15,11 @@ class Notes extends React.Component {
         return (
             <div id="container-1">
 
-                <div>
+                <div id='header'>
                     <Header />
                 </div>
 
-                <div>
+                <div id='notes-form'>
                     <Note_Form /> 
                 </div>
 
