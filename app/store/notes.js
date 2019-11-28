@@ -49,8 +49,7 @@ var initialState = {
 const WRITE_NOTE = 'WRITE_NOTE';
 const ADD_NOTE = 'ADD_NOTE';
 const DELETE_NOTE = 'DELETE_NOTE';
-const MARK_NOTE_COMPLETE = 'MARK_NOTE_COMPLETE';
-const MARK_NOTE_INCOMPLETE = 'MARK_NOTE_INCOMPLETE';
+const UPDATE_NOTE = 'UPDATE_NOTE';
 
 // action creators
 export function write_note (note) {
@@ -68,13 +67,8 @@ export function delete_note (note_id) {
     return action;
 }
 
-export function mark_note_complete(note_id) {
-    const action = { type: MARK_NOTE_COMPLETE, note_id};
-    return action;
-}
-
-export function mark_note_incomplete (note_id) {
-    const action = { type: MARK_NOTE_INCOMPLETE, note_id};
+export function update_note (id, key) {
+    const action = { type: UPDATE_NOTE, id, key};
     return action;
 }
 
@@ -99,26 +93,22 @@ export default function tasks (state = initialState, action) {
                 ...state,
                 notes: state.notes.filter((note) => note.id !== Number(action.note_id))
             }
-        case 'MARK_NOTE_COMPLETE':
+        case 'UPDATE_NOTE':
             return {
                 ...state,
                 notes: state.notes.map((note) => {
-                    if (note.id === Number(action.note_id)) {
-                        note.completed = true
+                  if (note.id === Number(action.id)) {
+                    if (action.key === 'completed') {
+                        note.completed = true;
+                    } else if (action.key === 'incomplete') {
+                        note.completed = false;
                     }
                     return note;
+                  } else {
+                      return note;
+                  }
                 })
             }
-        case 'MARK_NOTE_INCOMPLETE': 
-            return {
-                ...state, 
-                notes: state.notes.map((note) => {
-                    if (note.id === Number(action.note_id)) {
-                        note.completed = false
-                    }
-                    return note;
-                })
-            } 
         default: 
             return state;
     }

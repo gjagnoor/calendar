@@ -1,5 +1,5 @@
 import React from 'react';
-import store, {delete_note, mark_note_complete} from '../../store/store.js';
+import store, {delete_note, update_note} from '../../store/store.js';
 
 class Active_Notes extends React.Component {
     constructor (props) {
@@ -10,8 +10,8 @@ class Active_Notes extends React.Component {
 
     handleClick(evt) {
         var note_id = evt.target.value;
-        if (evt.target.checked === true && evt.target.name === 'marked_complete') {
-            store.dispatch(mark_note_complete(note_id));
+        if (evt.target.checked === true && evt.target.name === 'completed') {
+            store.dispatch(update_note(note_id, 'completed'));
         } else {
             store.dispatch(delete_note(note_id))
         }
@@ -28,6 +28,7 @@ class Active_Notes extends React.Component {
 
     render() {
         var current_date = this.state.calendar.calendar_date;
+        console.log(this.state);
         var notes_on_date = this.state.tasks.notes.filter((note) => note.due_date === current_date && note.completed === false);
         console.log(this.state)
         return (
@@ -45,7 +46,7 @@ class Active_Notes extends React.Component {
                                     {note.name}
                                 </div>
                                 <div>
-                                    <input className='checkbox' name = "marked_complete" type="checkbox" value={note.id} onClick={this.handleClick} />
+                                    <input className='checkbox' name = "completed" type="checkbox" value={note.id} onClick={this.handleClick} />
                                 </div>
                             </div>
                         )
