@@ -38,10 +38,10 @@ class Completed_Notes extends React.Component {
                 {
                     completed_notes_on_date ? completed_notes_on_date.map((note, i) => {
                         return (
-                            <div className='task complete' key={i}>
+                            <div className='flex-row-left complete' key={i}>
                                 <div>
                                     <button name="delete-button" value={note.id} onClick={this.handleClick}>
-                                        X
+                                        -
                                     </button>
                                 </div>
                                 <div>

@@ -4,7 +4,6 @@ import Active_Notes from './active-notes.js';
 import Completed_Notes from './completed_notes.js';
 import Header from './header.js';
 
-
 class Notes extends React.Component {
 
     constructor (props) {
@@ -13,9 +12,9 @@ class Notes extends React.Component {
 
     render () {
         return (
-            <div id="container-1">
+            <div className='flex-column-center'>
 
-                <div id='header'>
+                <div>
                     <Header />
                 </div>
 
@@ -23,7 +22,7 @@ class Notes extends React.Component {
                     <Note_Form /> 
                 </div>
 
-                <div>
+                <div id="active-notes">
                     <Active_Notes />
                 </div>
 
