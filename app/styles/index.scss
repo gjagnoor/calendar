@@ -3,12 +3,7 @@
 @import './notes/notes.scss';
 @import './notes/note_form.scss';
 @import './notes/active_notes.scss';
-
-// calendar component
-@import './calendar/calendar_header.scss';
-@import './calendar/calendar.scss';
-@import './calendar/dates.scss';
-@import './calendar/months.scss';
+@import './notes/header.scss';
 
 
 // styles shared by notes and calendar component
@@ -18,20 +13,23 @@ body {
 
 #container-0 {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     border: 1px solid white;
-    padding: 5%;
 }
 
 #container-0-1 {
-    width: 20em;
-    border: 1px solid white;
+    display:flex;
+    justify-content: left;
+    width: 40em;
+    border: 1px solid black;
 }
 
-#calendar {
+#container-0-2 {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    border: 1px solid red;
 }
 
 button {
@@ -46,8 +44,9 @@ button:focus {
     outline-style: solid;
 }
 
-input {
-    font-size: 1em;
+input[type='text'] {
+    font-size: 0.5em;
+    width: 15em;
 }
 
 

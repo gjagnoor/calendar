@@ -1,40 +1,45 @@
-
+import todays_date from './helpers/todays_date.js';
 // reorganize state
 /*
 */
 
 // initial state 
 var initialState = {
-    note_to_add: '',
+    note_to_add: {
+        id: 0,
+        name: 'please add a task for the day',
+        due_date: todays_date(),
+        completed: false
+    },
     notes: [
         {
             id: 1, 
-            name: 'note-26-1', 
-            date: '2019_11_26',
+            name: 'note-28-1', 
+            due_date: '2019-11-28',
             completed: false
         },
         {
             id: 2, 
             name: 'note-25-1', 
-            date: '2019_11_25',
+            due_date: '2019-11-25',
             completed: false
         },
         {
             id: 3, 
-            name: 'note-26-2', 
-            date: '2019_11_26',
+            name: 'note-28-2', 
+            due_date: '2019-11-28',
             completed: false
         },
         {
             id: 4,
-            name: 'note-26-3',
-            date: '2019_11_26',
+            name: 'note-28-3',
+            due_date: '2019-11-28',
             completed: true
         },
         {
             id: 5, 
             name: 'note-25-2', 
-            date: '2019_11_25',
+            due_date: '2019-11-25',
             completed: false
         }
     ]

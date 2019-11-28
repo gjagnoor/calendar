@@ -1,9 +1,24 @@
 #notes-form {
-    margin: 2.5%;
-    // border-bottom: 1px solid white;
-    padding: 3%;
+    border: 1px solid white;
+    width: 100%;
 }
 
-#submit-button {
-    margin-left: 3%;
+#form {
+    display:flex;
+    justify-content: center;
+}
+
+#note_field {
+    padding: 0%;
+    margin: 1%;
+}
+
+#date_field {
+    padding: 0%;
+    margin: 1%;
+}
+
+#submit_button {
+    padding: 0%;
+    margin: 1%;
 }

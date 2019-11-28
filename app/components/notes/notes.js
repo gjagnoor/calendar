@@ -1,8 +1,8 @@
 import React from 'react';
-import Date from './date.js';
 import Note_Form from './note-form.js';
 import Active_Notes from './active-notes.js';
 import Completed_Notes from './completed_notes.js';
+import Header from './header.js';
 
 
 class Notes extends React.Component {
@@ -16,7 +16,7 @@ class Notes extends React.Component {
             <div id="container-1">
 
                 <div>
-                    <Date />
+                    <Header />
                 </div>
 
                 <div>

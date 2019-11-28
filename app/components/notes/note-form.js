@@ -1,5 +1,6 @@
 import React from 'react';
-import store, {write_note, add_note} from '../../store/store.js';
+import store, {write_note, add_note, set_calendar_date} from '../../store/store.js';
+import todays_date from '../../store/helpers/todays_date.js';
 
 class Note_Form extends React.Component {
     constructor (props) {
@@ -10,25 +11,31 @@ class Note_Form extends React.Component {
     }
 
     handleChange (evt) {
-        var note = evt.target.value;
-        store.dispatch(write_note(note));
-        evt.preventDefault();
+        // generate note data
+        var new_note = {...this.state.tasks.note_to_add};
+        var notes = [...this.state.tasks.notes];
+        new_note.id = notes.slice().pop().id + 1;
+        evt.target.name === 'date' ? new_note.due_date = evt.target.value : new_note.due_date = this.state.calendar.calendar_date;
+        evt.target.name === 'note' ? new_note.name = evt.target.value : new_note.name = new_note.name; 
+        new_note.completed = false;
+        store.dispatch(write_note(new_note));
     }
  
     handleSubmit(evt) {
-        // generate note data
-        var id = this.state.tasks.notes.slice().pop().id + 1
-        var date_clicked = Object.values(this.state.calendar.calendar_date).join("_");
-        var name = this.state.tasks.note_to_add;
-        var completed = false;
-        var note = {id, date: date_clicked, name, completed};
-
         // add note 
-        store.dispatch(add_note(note));
-        store.dispatch(write_note(""));
+        store.dispatch(add_note(this.state.tasks.note_to_add));
+        store.dispatch(set_calendar_date(this.state.tasks.note_to_add.due_date));
+
+        // reset write note 
+        store.dispatch(write_note({
+            id: 0,
+            name: 'please add a task for the day',
+            due_date: todays_date(),
+            completed: false
+        }));
+
         evt.preventDefault();
     }
-
 
     componentWillMount () {
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));  
@@ -41,10 +48,19 @@ class Note_Form extends React.Component {
     render () {
         return (
             <div id="notes-form">
-                <form onSubmit={this.handleSubmit}>
-                    <input name="note" type="text" value={this.state.tasks.note_to_add} onChange={this.handleChange} />
-                    <input id = "submit-button" name="submit" type="submit" value="+" />
-                </form>
+                <div>
+                    <form id="form" onSubmit={this.handleSubmit}>
+                        <div id="note_field">
+                            <input name="note" type="text" value={this.state.tasks.note_to_add.name} onChange={this.handleChange} />
+                        </div>
+                        <div id="date_field">
+                            <input name="date" type="date" value = {this.state.tasks.note_to_add.due_date} onChange={this.handleChange} />
+                        </div>
+                        <div id="submit_button">
+                            <input name="submit" type="submit" value="+" />
+                        </div>
+                    </form>
+                </div>
             </div>
         )
     }
