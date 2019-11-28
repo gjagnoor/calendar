@@ -1,6 +1,8 @@
-import todays_date from './helpers/todays_date.js';
+import {datestring, toiso} from './helpers/date_transformers.js';
+
 // reorganize state
 /*
+    dates should be stored in dateString format only? -- 
 */
 
 // initial state 
@@ -8,38 +10,38 @@ var initialState = {
     note_to_add: {
         id: 0,
         name: 'please add a task for the day',
-        due_date: todays_date(),
+        due_date: datestring(Date.now()),
         completed: false
     },
     notes: [
         {
             id: 1, 
             name: 'note-28-1', 
-            due_date: '2019-11-28',
+            due_date: datestring(Date.now()),
             completed: false
         },
         {
             id: 2, 
-            name: 'note-25-1', 
-            due_date: '2019-11-25',
+            name: 'note-28-2', 
+            due_date: datestring(Date.now()),
             completed: false
         },
         {
             id: 3, 
-            name: 'note-28-2', 
-            due_date: '2019-11-28',
+            name: 'note-28-3', 
+            due_date: datestring(Date.now()),
             completed: false
         },
         {
             id: 4,
-            name: 'note-28-3',
-            due_date: '2019-11-28',
+            name: 'note-28-4',
+            due_date: datestring(Date.now()),
             completed: true
         },
         {
             id: 5, 
-            name: 'note-25-2', 
-            due_date: '2019-11-25',
+            name: 'note-28-5', 
+            due_date: datestring(Date.now()),
             completed: false
         }
     ]
