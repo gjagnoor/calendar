@@ -1,4 +1,4 @@
-import todays_date from './helpers/todays_date.js';
+import {datestring, toiso} from './helpers/date_transformers.js';
 
 // reorganize state
 /*
@@ -6,7 +6,7 @@ import todays_date from './helpers/todays_date.js';
 
 // initial state 
 var initialState = {
-    calendar_date: todays_date()
+    calendar_date: datestring(Date.now())
 }
 
 // action types 
@@ -24,7 +24,7 @@ export default function calendar (state = initialState, action) {
         case 'SET_CALENDAR_DATE': 
             return {
                 ...state,
-                calendar_date: action.date || todays_date()
+                calendar_date: action.date
             }
         default: 
             return state;
