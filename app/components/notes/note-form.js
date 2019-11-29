@@ -16,7 +16,7 @@ class Note_Form extends React.Component {
         new_note.id = this.state.tasks.notes[this.state.tasks.notes.length-1]['id'] + 1;
         new_note = {
             ...new_note,
-            [evt.target.name] : evt.target.name === 'due_date' ? datestring(evt.target.value) : evt.target.value
+            [evt.target.name] : evt.target.name === 'due_date' ? datestring(evt.target.value) : evt.target.value // this is correct, you're doing fine! 
 
         }
         store.dispatch(write_note(new_note));
@@ -48,6 +48,7 @@ class Note_Form extends React.Component {
 
     render () {
         var due_date_iso_format = toiso(this.state.tasks.note_to_add.due_date).split('T')[0]; 
+        console.log(this.state);
         return (
             <div>
                 <form className='flex-row-center' onSubmit={this.handleSubmit}>
