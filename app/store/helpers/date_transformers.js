@@ -4,6 +4,9 @@ export function toiso (date) {
 }
 
 export function datestring (date) {
+  // to eventually use...
+  // var regex = RegExp('^\d{4}-([0]\d|1[0-2])-([0-2]\d|3[01])$');
+  // console.log(regex.test(date));
   if (typeof(date) === 'string') {
     var incoming_date = new Date(date); // date string format 
     var corrected_date = incoming_date.setDate(incoming_date.getDate()+1); // number format
