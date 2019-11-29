@@ -5,17 +5,13 @@
 #notes-form {
     width: 100%;
 
-    input[type='text'], input[type='date'], input:focus {
-        background-color: #303030;
-        outline: none;
-        border: none;
-        border-bottom: 0.5px solid lightgrey;
+    input[type='text'], input[type='date'] {
         color: lightgrey;
     }
 }
 
 #active-notes {
-    #note-name {
+    input[type='text'], input:focus {
         color: #F7CC00;
     }
 }
