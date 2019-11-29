@@ -4,7 +4,7 @@ export function toiso (date) {
 }
 
 export function datestring (date) {
-  // to eventually use...
+  // to eventually use something like...
   // var regex = RegExp('^\d{4}-([0]\d|1[0-2])-([0-2]\d|3[01])$');
   // console.log(regex.test(date));
   if (typeof(date) === 'string') {
