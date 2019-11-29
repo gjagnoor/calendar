@@ -1,4 +1,5 @@
 import {datestring, toiso} from './helpers/date_transformers.js';
+import {reset_note_to_add} from './helpers/notes.js';
 
 // reorganize state
 /*
@@ -7,12 +8,7 @@ import {datestring, toiso} from './helpers/date_transformers.js';
 
 // initial state 
 var initialState = {
-    note_to_add: {
-        id: 0,
-        name: 'please add a task for the day',
-        due_date: datestring(Date.now()),
-        completed: false
-    },
+    note_to_add: reset_note_to_add(),
     notes: [
         {
             id: 1, 
