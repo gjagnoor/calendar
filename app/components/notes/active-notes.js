@@ -45,10 +45,8 @@ class Active_Notes extends React.Component {
         var notes_on_another_date = this.state.tasks.notes.filter((note) => {
             if (!note.completed) {
                 var today = new Date(this.state.calendar.calendar_date);
-                today = today.valueOf();
                 var due_date = new Date(note.due_date);
-                due_date = due_date.valueOf();
-                if (today < due_date) {
+                if (today.valueOf() < due_date.valueOf()) {
                     return note;
                 }
             }

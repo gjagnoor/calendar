@@ -23,7 +23,21 @@
     }
 
     .due-another-day {
-        outline: 0.5px solid lightseagreen;
+        background-color: lightseagreen;
+
+        input[type='text'] {
+            color: white;
+            background-color: lightseagreen;
+        }
+    }
+
+    .due-in-3-days {
+        background-color: crimson;
+
+        input[type='text'] {
+            color: white;
+            background-color: crimson;
+        }
     }
 }
 
