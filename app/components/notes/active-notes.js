@@ -18,11 +18,8 @@ class Active_Notes extends React.Component {
 
     handleClick(evt) {
         var note_id = evt.target.value;
-        if (evt.target.checked === true && evt.target.name === 'completed') {
-            store.dispatch(update_note(note_id, 'completed', null));
-        } else {
-            store.dispatch(delete_note(note_id))
-        }
+        evt.target.checked === true && evt.target.name === 'completed' ? store.dispatch(update_note(note_id, 'completed', null)) : (null);
+        evt.target.name === 'delete-active-note' ? store.dispatch(delete_note(note_id)) : (null);
         evt.preventDefault();
     }
 
@@ -60,7 +57,7 @@ class Active_Notes extends React.Component {
                                 <div key = {i} className ="flex-row-left note snuggle-fit" id={note.id} draggable="true" onDragStart={this.handleOnDrag}>
                                     <i className="fas fa-bars"></i>
                                     <div>
-                                        <button name="delete-button" value={note.id} onClick={this.handleClick}>
+                                        <button name="delete-active-note" value={note.id} onClick={this.handleClick}>
                                             -
                                         </button>
                                     </div>
