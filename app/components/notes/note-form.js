@@ -1,6 +1,7 @@
 import React from 'react';
 import store, {write_note, add_note, set_calendar_date} from '../../store/store.js';
 import {datestring, toiso} from '../../store/helpers/date_transformers.js';
+import {reset_note_to_add} from '../../store/helpers/notes.js';
 
 class Note_Form extends React.Component {
     constructor (props) {
@@ -25,15 +26,8 @@ class Note_Form extends React.Component {
         // add note 
         store.dispatch(add_note(this.state.tasks.note_to_add));
         store.dispatch(set_calendar_date(this.state.tasks.note_to_add.due_date));
-
         // reset write note 
-        store.dispatch(write_note({
-            id: 0,
-            name: 'please add a task for the day',
-            due_date: datestring(Date.now()),
-            completed: false
-        }));
-
+        store.dispatch(write_note(reset_note_to_add()));
         evt.preventDefault();
     }
 
@@ -47,7 +41,7 @@ class Note_Form extends React.Component {
 
     render () {
         var due_date_iso_format = toiso(this.state.tasks.note_to_add.due_date).split('T')[0]; 
-        console.log(this.state);
+        console.log('state from note-form-component', this.state);
         return (
             <div>
                 <form className='flex-row-center' onSubmit={this.handleSubmit}>
