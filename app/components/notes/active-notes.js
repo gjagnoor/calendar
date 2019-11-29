@@ -49,16 +49,18 @@ class Active_Notes extends React.Component {
                             return (
                                 <div key = {i} className ={class_val} id={note.id} draggable="true" onDragStart={this.handleOnDrag}>
                                     <i className="fas fa-bars"></i>
-                                    <div>
-                                        <button name="delete-active-note" value={note.id} onClick={this.handleClick}>
-                                            -
-                                        </button>
-                                    </div>
                                     <div id="note-name">
                                         <input id={note.id} name='name' type="text" value={note.name} onChange={this.handleChange} />
                                     </div>
                                     <div>
                                         <input className='checkbox' name = "completed" type="checkbox" value={note.id} onClick={this.handleClick} />
+                                    </div>
+                                    <div className="flex-row-right">
+                                        <div>
+                                            <button name="delete-active-note" value={note.id} onClick={this.handleClick}>
+                                                -
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             )
