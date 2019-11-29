@@ -19,10 +19,6 @@ class Notes extends React.Component {
                     <Header />
                 </div>
 
-                <div id='notes-form'>
-                    <Note_Form /> 
-                </div>
-
                 <div>
                     <Week />
                 </div>
@@ -33,6 +29,10 @@ class Notes extends React.Component {
 
                 <div>
                     <Completed_Notes />
+                </div>
+
+                <div id='notes-form'>
+                    <Note_Form /> 
                 </div>
                     
             </div>
