@@ -42,28 +42,63 @@ class Active_Notes extends React.Component {
     render() {
         var current_date = this.state.calendar.calendar_date;
         var notes_on_date = this.state.tasks.notes.filter((note) => note.due_date === current_date && note.completed === false);
+        var notes_on_another_date = this.state.tasks.notes.filter((note) => {
+            if (!note.completed) {
+                var today = new Date(this.state.calendar.calendar_date);
+                today = today.valueOf();
+                var due_date = new Date(note.due_date);
+                due_date = due_date.valueOf();
+                if (today < due_date) {
+                    return note;
+                }
+            }
+        });
         return (
             <div className='flex-column-left snuggle-fit border-bottom'>
-                {                            
-                    notes_on_date ? notes_on_date.map((note, i)=> {
-                        return (
-                            <div key = {i} className ="flex-row-left note snuggle-fit" id={note.id} draggable="true" onDragStart={this.handleOnDrag}>
-                                <i className="fas fa-bars"></i>
-                                <div>
-                                    <button name="delete-button" value={note.id} onClick={this.handleClick}>
-                                        -
-                                    </button>
+                <div>
+                    {                            
+                        notes_on_date ? notes_on_date.map((note, i)=> {
+                            return (
+                                <div key = {i} className ="flex-row-left note snuggle-fit" id={note.id} draggable="true" onDragStart={this.handleOnDrag}>
+                                    <i className="fas fa-bars"></i>
+                                    <div>
+                                        <button name="delete-button" value={note.id} onClick={this.handleClick}>
+                                            -
+                                        </button>
+                                    </div>
+                                    <div id="note-name">
+                                        <input id={note.id} name='name' type="text" value={note.name} onChange={this.handleChange} />
+                                    </div>
+                                    <div>
+                                        <input className='checkbox' name = "completed" type="checkbox" value={note.id} onClick={this.handleClick} />
+                                    </div>
                                 </div>
-                                <div id="note-name">
-                                    <input id={note.id} name='name' type="text" value={note.name} onChange={this.handleChange} />
+                            )
+                        }) : (null)
+                    }
+                </div>
+                <div>
+                    {
+                        notes_on_another_date ? notes_on_another_date.map((note, i) => {
+                            return (<div key={i} className ="flex-row-left note snuggle-fit due-another-day" id={note.id}>
+                                    <div>
+                                        <button name="delete-button" value={note.id} onClick={this.handleClick} >
+                                            -
+                                        </button>
+                                    </div>
+
+                                    <div>
+                                        <input id={note.id} name='name' type="text" value={note.name} onChange={this.handleChange} />
+                                    </div>
+
+                                    <div>
+                                        <input className='checkbox' name = "completed" type="checkbox" value={note.id} onClick={this.handleClick} />
+                                    </div>
                                 </div>
-                                <div>
-                                    <input className='checkbox' name = "completed" type="checkbox" value={note.id} onClick={this.handleClick} />
-                                </div>
-                            </div>
-                        )
-                    }) : (null)
-                }
+                            )
+                        }) : (null)                       
+                    }
+                </div>
             </div>
         )
     }
