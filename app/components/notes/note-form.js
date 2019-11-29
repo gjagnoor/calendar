@@ -14,7 +14,6 @@ class Note_Form extends React.Component {
         // generate note data
         var new_note = {...this.state.tasks.note_to_add};
         new_note.id = this.state.tasks.notes[this.state.tasks.notes.length-1]['id'] + 1;
-        evt.target.name === 'due_date' ? console.log('incoming iso due date and date string due date:::', typeof(evt.target.value), datestring(evt.target.value)): null;
         new_note = {
             ...new_note,
             [evt.target.name] : evt.target.name === 'due_date' ? datestring(evt.target.value) : evt.target.value // this is correct 
