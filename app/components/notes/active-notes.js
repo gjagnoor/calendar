@@ -39,7 +39,6 @@ class Active_Notes extends React.Component {
     render() {
         var current_date = this.state.calendar.calendar_date;
         var notes_on_calendar_date_and_futuredate = filter_for_active_notes(this.state.tasks.notes, current_date);
-        console.log(notes_on_calendar_date_and_futuredate)
         return (
             <div className='flex-column-left snuggle-fit border-bottom'>
                 <div>
