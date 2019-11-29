@@ -16,10 +16,9 @@ Date.prototype.addDays = function (date, days) {
 export function next_7_days (date) {
   var new_date = new Date(date);
   var week = [];
-  for (var i = 0; i <= 6; i++) {
+  for (var i = 0; i <= 7; i++) {
     var next_date = new Date(new_date.getTime()); // to avoid mutating original new_date
     week.push(next_date.addDays(next_date, i));
   }
-  week.shift(new_date);
   return week;
 }
