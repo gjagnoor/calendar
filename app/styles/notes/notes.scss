@@ -12,7 +12,14 @@
 
 #active-notes {
     input[type='text'], input:focus {
-        color: #F7CC00;
+        background-color: lightgrey;
+        // color: #F7CC00;
+        color: lightseagreen;
+    }
+
+    .note {
+        background-color: lightgrey;
+        border-radius: 7px;
     }
 }
 
