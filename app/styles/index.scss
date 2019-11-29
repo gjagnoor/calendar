@@ -17,6 +17,12 @@ body {
         justify-content: left;
     }
 
+    .flex-row-right {
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+    }
+
     .flex-column-center {
         display: flex;
         flex-direction: column;
