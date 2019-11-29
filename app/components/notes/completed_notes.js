@@ -11,9 +11,7 @@ class Completed_Notes extends React.Component {
 
     handleChange (evt) {
         var note_id = evt.target.value;
-        if (evt.target.checked === false && evt.target.name === 'incomplete') {
-            store.dispatch(update_note(note_id, 'incomplete'));
-        }
+        evt.target.checked === false && evt.target.name === 'incomplete' ? store.dispatch(update_note(note_id, 'incomplete')) : (null);
     }
 
     handleClick (evt) {
