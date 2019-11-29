@@ -69,8 +69,9 @@ export function delete_note (note_id) {
     return action;
 }
 
-export function update_note (id, key) {
-    const action = { type: UPDATE_NOTE, id, key};
+export function update_note (id, key, updated_name) {
+    console.log(updated_name)
+    const action = { type: UPDATE_NOTE, id, key, updated_name};
     return action;
 }
 
@@ -104,6 +105,8 @@ export default function tasks (state = initialState, action) {
                         note.completed = true;
                     } else if (action.key === 'incomplete') {
                         note.completed = false;
+                    } else if (action.key === 'name') {
+                        note.name = action.updated_name;
                     }
                     return note;
                   } else {

@@ -6,12 +6,19 @@ class Active_Notes extends React.Component {
         super (props);
         this.state = store.getState();
         this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange (evt) {
+        var update_to_name = evt.target.value;
+        var note_id = evt.target.id;
+        store.dispatch(update_note(note_id, 'name', update_to_name));
     }
 
     handleClick(evt) {
         var note_id = evt.target.value;
         if (evt.target.checked === true && evt.target.name === 'completed') {
-            store.dispatch(update_note(note_id, 'completed'));
+            store.dispatch(update_note(note_id, 'completed', null));
         } else {
             store.dispatch(delete_note(note_id))
         }
@@ -41,7 +48,7 @@ class Active_Notes extends React.Component {
                                     </button>
                                 </div>
                                 <div id="note-name">
-                                    {note.name}
+                                    <input id={note.id} name='name' type="text" value={note.name} onChange={this.handleChange} />
                                 </div>
                                 <div>
                                     <input className='checkbox' name = "completed" type="checkbox" value={note.id} onClick={this.handleClick} />
