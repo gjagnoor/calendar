@@ -41,7 +41,8 @@ class Active_Notes extends React.Component {
                 {                            
                     notes_on_date ? notes_on_date.map((note, i)=> {
                         return (
-                            <div className ="flex-row-left" key={i}>
+                            <div className ="flex-row-left note snuggle-fit" key={i}>
+                                <i className="fas fa-bars"></i>
                                 <div>
                                     <button name="delete-button" value={note.id} onClick={this.handleClick}>
                                         -
