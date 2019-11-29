@@ -8,19 +8,17 @@ export function datestring (date) {
   return date.toDateString();
 }
 
+Date.prototype.addDays = function (date, days) {
+  date.setDate(date.getDate() + days)
+  return date.toDateString();
+}
+
 export function next_7_days (date) {
-  Date.prototype.addDays = function (date, days) {
-    date.setDate(date.getDate() + days)
-    return date.toDateString();
-  }
-
   var new_date = new Date(date);
-
   var week = [];
-
   for (var i = 0; i <= 6; i++) {
-    week.push(new_date.addDays(new_date, i+1));
+    var next_date = new Date(new_date.getTime()); // to avoid mutating original new_date
+    week.push(next_date.addDays(next_date, i));
   }
-
   return week;
 }
