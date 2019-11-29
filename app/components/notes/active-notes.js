@@ -7,6 +7,7 @@ class Active_Notes extends React.Component {
         this.state = store.getState();
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleOnDrag = this.handleOnDrag.bind(this);
     }
 
     handleChange (evt) {
@@ -25,6 +26,11 @@ class Active_Notes extends React.Component {
         evt.preventDefault();
     }
 
+    handleOnDrag (evt) {
+        console.log('Im innnn', evt.target.id)
+        evt.dataTransfer.setData("id", evt.target.id);
+    }
+
     componentWillMount() {
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
     }
@@ -41,7 +47,7 @@ class Active_Notes extends React.Component {
                 {                            
                     notes_on_date ? notes_on_date.map((note, i)=> {
                         return (
-                            <div className ="flex-row-left note snuggle-fit" key={i}>
+                            <div key = {i} className ="flex-row-left note snuggle-fit" id={note.id} draggable="true" onDragStart={this.handleOnDrag}>
                                 <i className="fas fa-bars"></i>
                                 <div>
                                     <button name="delete-button" value={note.id} onClick={this.handleClick}>
