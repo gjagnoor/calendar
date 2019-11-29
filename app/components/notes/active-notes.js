@@ -1,5 +1,6 @@
 import React from 'react';
 import store, {delete_note, update_note} from '../../store/store.js';
+import {filter_for_active_notes, due_date_in_future} from '../../store/helpers/notes.js';
 
 class Active_Notes extends React.Component {
     constructor (props) {
@@ -24,7 +25,6 @@ class Active_Notes extends React.Component {
     }
 
     handleOnDrag (evt) {
-        console.log('Im innnn', evt.target.id)
         evt.dataTransfer.setData("id", evt.target.id);
     }
 
@@ -38,23 +38,17 @@ class Active_Notes extends React.Component {
 
     render() {
         var current_date = this.state.calendar.calendar_date;
-        var notes_on_date = this.state.tasks.notes.filter((note) => note.due_date === current_date && note.completed === false);
-        var notes_on_another_date = this.state.tasks.notes.filter((note) => {
-            if (!note.completed) {
-                var today = new Date(this.state.calendar.calendar_date);
-                var due_date = new Date(note.due_date);
-                if (today.valueOf() < due_date.valueOf()) {
-                    return note;
-                }
-            }
-        });
+        var notes_on_calendar_date_and_futuredate = filter_for_active_notes(this.state.tasks.notes, current_date);
+        console.log(notes_on_calendar_date_and_futuredate)
         return (
             <div className='flex-column-left snuggle-fit border-bottom'>
                 <div>
                     {                            
-                        notes_on_date ? notes_on_date.map((note, i)=> {
+                        notes_on_calendar_date_and_futuredate ? notes_on_calendar_date_and_futuredate.map((note, i)=> {
+                            var class_val = '';
+                            due_date_in_future(current_date, note.due_date) ? class_val = "flex-row-left note snuggle-fit due-another-day" : class_val = "flex-row-left note snuggle-fit";
                             return (
-                                <div key = {i} className ="flex-row-left note snuggle-fit" id={note.id} draggable="true" onDragStart={this.handleOnDrag}>
+                                <div key = {i} className ={class_val} id={note.id} draggable="true" onDragStart={this.handleOnDrag}>
                                     <i className="fas fa-bars"></i>
                                     <div>
                                         <button name="delete-active-note" value={note.id} onClick={this.handleClick}>
@@ -70,28 +64,6 @@ class Active_Notes extends React.Component {
                                 </div>
                             )
                         }) : (null)
-                    }
-                </div>
-                <div>
-                    {
-                        notes_on_another_date ? notes_on_another_date.map((note, i) => {
-                            return (<div key={i} className ="flex-row-left note snuggle-fit due-another-day" id={note.id}>
-                                    <div>
-                                        <button name="delete-button" value={note.id} onClick={this.handleClick} >
-                                            -
-                                        </button>
-                                    </div>
-
-                                    <div>
-                                        <input id={note.id} name='name' type="text" value={note.name} onChange={this.handleChange} />
-                                    </div>
-
-                                    <div>
-                                        <input className='checkbox' name = "completed" type="checkbox" value={note.id} onClick={this.handleClick} />
-                                    </div>
-                                </div>
-                            )
-                        }) : (null)                       
                     }
                 </div>
             </div>
