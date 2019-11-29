@@ -4,8 +4,13 @@ export function toiso (date) {
 }
 
 export function datestring (date) {
-  date = new Date(date);
-  return date.toDateString();
+  if (typeof(date) === 'string') {
+    var incoming_date = new Date(date); // date string format 
+    var corrected_date = incoming_date.setDate(incoming_date.getDate()+1); // number format
+    return new Date(corrected_date).toDateString(); // date string format
+  } else {
+    return new Date(date).toDateString();
+  }
 }
 
 Date.prototype.addDays = function (date, days) {
