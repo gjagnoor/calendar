@@ -1,5 +1,5 @@
 import React from 'react';
-import store from '../../store/store.js';
+import store, { set_calendar_date } from '../../store/store.js';
 
 class Week extends React.Component {
     constructor (props) {
@@ -9,8 +9,8 @@ class Week extends React.Component {
     }
 
     handleClick (evt) {
-        // div doesn't have a value field
-        console.log('div has a value:::', evt.target.value)
+        var date_selected = evt.target.id;
+        store.dispatch(set_calendar_date(date_selected));
     }
 
     componentDidMount() {
@@ -32,7 +32,7 @@ class Week extends React.Component {
                                     {day.split(" ")[0]}
                                 </div>
                                 {/* date prints with a space on one line when logged */}
-                                <div value={i} onClick={this.handleClick}>
+                                <div id={day} onClick={this.handleClick}>
                                     {day.split(" ").slice(1,3).join(" ")}
                                 </div>
                             </div>
