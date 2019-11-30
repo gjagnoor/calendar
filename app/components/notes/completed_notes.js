@@ -32,21 +32,21 @@ class Completed_Notes extends React.Component {
         var current_date = this.state.calendar.calendar_date;
         var completed_notes_on_date = this.state.tasks.notes.filter((note) => note.due_date === current_date && note.completed === true);
         return (
-            <div>
+            <div className="snuggle-fit">
                 {
                     completed_notes_on_date ? completed_notes_on_date.map((note, i) => {
                         return (
-                            <div className='flex-row-left complete' key={i}>
-                                <div>
-                                    <button className="fas fa-trash-alt delete-note" name="delete-button" value={note.id} onClick={this.handleClick}>
-                                        -
-                                    </button>
-                                </div>
-                                <div>
+                            <div className='flex-row-left snuggle-fit complete' key={i}>
+                                <div className="note-name snuggle-fit">
                                     {note.name}
                                 </div>
-                                <div>
-                                    <input className='checkbox' name = "incomplete" type="checkbox" value={note.id} onChange = {this.handleChange} checked/>
+                                <div className="flex-row-center complete-note-actions">
+                                    <div>
+                                        <input className='checkbox' name = "incomplete" type="checkbox" value={note.id} onChange = {this.handleChange} checked/>
+                                    </div>
+                                    <div>
+                                        <button className="fas fa-trash-alt delete-note" name="delete-button" value={note.id} onClick={this.handleClick}></button>
+                                    </div>
                                 </div>
                             </div>
                         )

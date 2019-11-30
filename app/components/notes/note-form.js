@@ -44,15 +44,17 @@ class Note_Form extends React.Component {
         console.log('state from note-form-component', this.state);
         return (
             <div>
-                <form className='flex-row-center' onSubmit={this.handleSubmit}>
-                    <div className='snuggle-fit'>
-                        <input name="name" type="text" value={this.state.tasks.note_to_add.name} onChange={this.handleChange} />
+                <form className='flex-column-center' onSubmit={this.handleSubmit}>
+                    <div className="flex-row-center">
+                        <div className='snuggle-fit'>
+                            <input name="name" type="text" value={this.state.tasks.note_to_add.name} onChange={this.handleChange} />
+                        </div>
+                        {/* convert date to iso format before passing it to value field */}
+                        <div className='snuggle-fit'>
+                            <input name="due_date" type="date" value = {due_date_iso_format} onChange={this.handleChange} />
+                        </div>
                     </div>
-                    {/* convert date to iso format before passing it to value field */}
-                    <div className='snuggle-fit'>
-                        <input name="due_date" type="date" value = {due_date_iso_format} onChange={this.handleChange} />
-                    </div>
-                    <div className='snuggle-fit'>
+                    <div id = "note-submit" className='snuggle-fit'>
                         <input name="submit" type="submit" value="+" />
                     </div>
                 </form>

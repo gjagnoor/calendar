@@ -4,6 +4,7 @@
 
 #notes-form {
     width: 100%;
+    margin-top: 4%;
 
     input[type='text'], input[type='date'] {
         color: lightgrey;
@@ -14,7 +15,7 @@
     input[type='text'], input:focus  {
         // background-color: lightgrey;
         margin-left: 7%;
-        width: auto;
+        width: 42vw;
         color: #F7CC00;
         font-size: 0.7em;
         font-family: 'Courier New', Courier, monospace;
@@ -22,7 +23,6 @@
     }
 
     .note {
-        color: lightgrey;
         width: fit-content;
         margin: 3%;
         border-left: 3px solid crimson;
@@ -55,16 +55,25 @@
 .complete {
     color: #14f3af;
     font-size: 0.7em;
-    text-decoration: line-through;  
+    text-decoration: line-through;
+    width: 60vw;
+    // margin-left: 3%;
+    border-left: 3px solid crimson;  
+    .note-name {
+        margin-left: 1%;
+    }
+    .complete-note-actions {
+        width: fit-content;
+        margin-left: 36.55vw;
+    }    
 }
 
 .delete-note {
     background-color: #303030;
     color: crimson;
     border: none;
-    // border: 0.5px solid crimson;
+    margin-left: 10%;
 }
-
 .weekdate {
     color: #2888a5;
 }
@@ -85,4 +94,19 @@
 #download:hover {
     border: 0.5px solid lightcyan;
     border-radius: 7px;
+}
+
+input[type='submit'] {
+    padding: 0%;
+    border: none;
+    border-radius: 50%;
+    margin-left: 21%;
+    margin-top: 0.05%;
+    width: 2em;
+    height: 2em;
+    font-size: 2em;
+    background-color: #ebc342;
+    color: white;
+    position: absolute;
+    z-index: 1;
 }

@@ -40,7 +40,7 @@ class Active_Notes extends React.Component {
         var current_date = this.state.calendar.calendar_date;
         var notes_on_calendar_date_and_futuredate = filter_for_active_notes(this.state.tasks.notes, current_date);
         return (
-            <div className='flex-column-left snuggle-fit border-bottom'>
+            <div className='snuggle-fit border-bottom'>
                 <div>
                     {                            
                         notes_on_calendar_date_and_futuredate ? notes_on_calendar_date_and_futuredate.map((note, i)=> {
@@ -51,13 +51,14 @@ class Active_Notes extends React.Component {
                                     <div id="note-name">
                                         <input id={note.id} name='name' type="text" value={note.name} onChange={this.handleChange} />
                                     </div>
-                                    <div>
-                                        <input className='checkbox' name = "completed" type="checkbox" value={note.id} onClick={this.handleClick} />
-                                    </div>
-                                    <div className="flex-row-right">
+                                    <div className="flex-row-center note-actions">
                                         <div>
-                                            <button className="fas fa-trash-alt delete-note" name="delete-active-note" value={note.id} onClick={this.handleClick}>
-                                            </button>
+                                            <input className='checkbox' name = "completed" type="checkbox" value={note.id} onClick={this.handleClick} />
+                                        </div>
+                                        <div className="flex-row-right">
+                                            <div>
+                                                <button className="fas fa-trash-alt delete-note" name="delete-active-note" value={note.id} onClick={this.handleClick}></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
