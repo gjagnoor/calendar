@@ -1,5 +1,7 @@
 import React from 'react';
 import store from '../../store/store.js';
+import {filter_for_active_notes} from '../../store/helpers/notes.js';
+import {generate_pdf} from '../../store/helpers/pdf.js';
 
 class Actions extends React.Component {
     constructor (props) {
@@ -9,7 +11,9 @@ class Actions extends React.Component {
     }
 
     handleClick () {
-
+        var todays_date = this.state.calendar.calendar_date;
+        var notes = filter_for_active_notes(this.state.tasks.notes, todays_date);       
+        generate_pdf(notes, todays_date);
     }
 
     componentWillMount() {
