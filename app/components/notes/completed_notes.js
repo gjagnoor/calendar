@@ -38,7 +38,7 @@ class Completed_Notes extends React.Component {
                         return (
                             <div className='flex-row-left complete' key={i}>
                                 <div>
-                                    <button name="delete-button" value={note.id} onClick={this.handleClick}>
+                                    <button className="fas fa-trash-alt delete-note" name="delete-button" value={note.id} onClick={this.handleClick}>
                                         -
                                     </button>
                                 </div>

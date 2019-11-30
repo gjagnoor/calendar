@@ -4,6 +4,8 @@
 // styles shared by notes and calendar component
 body {
     background-color: whitesmoke;
+    font-size: 1em;
+    font-family: 'Courier New', Courier, monospace;
 
     .flex-row-center {
         display: flex;
@@ -64,6 +66,7 @@ body {
         #container-0-2 {
             background-color: #303030;
             width: 50%;
+            border-radius: 7px;
         }
     }
 }

@@ -11,21 +11,26 @@
 }
 
 #active-notes {
-    input[type='text'], input:focus {
-        background-color: lightgrey;
+    input[type='text'], input:focus  {
+        // background-color: lightgrey;
         margin-left: 7%;
         width: auto;
-        color: lightseagreen;
+        color: #F7CC00;
+        font-size: 0.7em;
+        font-family: 'Courier New', Courier, monospace;
+        border: none;
     }
 
     .note {
-        background-color: lightgrey;
-        border-radius: 7px;
+        color: lightgrey;
         width: fit-content;
+        margin: 3%;
+        border-left: 3px solid crimson;
     }
 
     .due-another-day {
         background-color: lightseagreen;
+        border-radius: 7px;
 
         input[type='text'] {
             color: white;
@@ -41,9 +46,43 @@
             background-color: crimson;
         }
     }
+
+    .checkbox:checked {
+        background-color: lightseagreen;
+    }
 }
 
 .complete {
     color: #14f3af;
-    text-decoration: line-through;
+    font-size: 0.7em;
+    text-decoration: line-through;  
+}
+
+.delete-note {
+    background-color: #303030;
+    color: crimson;
+    border: none;
+    // border: 0.5px solid crimson;
+}
+
+.weekdate {
+    color: #2888a5;
+}
+
+.weekdate:hover {
+    text-decoration: underline;
+}
+
+.weekday {
+    color: whitesmoke;
+}
+
+#download {
+    color: #ebc342;
+    padding: 1.5%;
+}
+
+#download:hover {
+    border: 0.5px solid lightcyan;
+    border-radius: 7px;
 }

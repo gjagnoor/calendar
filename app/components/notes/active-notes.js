@@ -48,7 +48,6 @@ class Active_Notes extends React.Component {
                             due_date_in_future(current_date, note.due_date) ? class_val = "flex-row-left note snuggle-fit due-another-day" : class_val = "flex-row-left note snuggle-fit";
                             return (
                                 <div key = {i} className ={class_val} id={note.id} draggable="true" onDragStart={this.handleOnDrag}>
-                                    <i className="fas fa-bars"></i>
                                     <div id="note-name">
                                         <input id={note.id} name='name' type="text" value={note.name} onChange={this.handleChange} />
                                     </div>
@@ -57,8 +56,7 @@ class Active_Notes extends React.Component {
                                     </div>
                                     <div className="flex-row-right">
                                         <div>
-                                            <button name="delete-active-note" value={note.id} onClick={this.handleClick}>
-                                                -
+                                            <button className="fas fa-trash-alt delete-note" name="delete-active-note" value={note.id} onClick={this.handleClick}>
                                             </button>
                                         </div>
                                     </div>
