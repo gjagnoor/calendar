@@ -18,7 +18,7 @@ class Main extends React.Component {
     return (
       <div className='flex-row-center snuggle-fit dev-mode' id='container-0'>
 
-        <div className='flex-column-center snuggle-fit' id="container-0-2">
+        <div className='snuggle-fit' id="container-0-2">
           <Notes />
         </div>
 
