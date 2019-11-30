@@ -10,10 +10,11 @@ class Actions extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick () {
+    handleClick (evt) {
         var todays_date = this.state.calendar.calendar_date;
         var notes = filter_for_active_notes(this.state.tasks.notes, todays_date);       
         generate_pdf(notes, todays_date);
+        evt.preventDefault();
     }
 
     componentWillMount() {
