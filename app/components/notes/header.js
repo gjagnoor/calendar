@@ -1,22 +1,13 @@
 import React from 'react';
-import store from '../../store/store.js';
+import {connect} from 'react-redux';
 
 class Header extends React.Component {
     constructor(props) {
         super(props);
-        this.state = store.getState();
-    }
-
-    componentDidMount() {
-        this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
-    }
-
-    componentWillUnmount () {
-        this.unsubscribe();
     }
 
     render () {
-        var date = new Date (this.state.calendar.calendar_date);
+        var date = new Date (this.props.calendar_date);
         date = date.toDateString();
         return (
             <div className='snuggle-fit text-align-center' id="date-rendering">
@@ -26,4 +17,10 @@ class Header extends React.Component {
     }
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+    return {
+        calendar_date: state.calendar.calendar_date
+    }
+}
+
+export default connect(mapStateToProps) (Header);
