@@ -41,11 +41,11 @@ class Week extends React.Component {
                     this.state.calendar.week.map((day, i) => {
                         return (
                             <div key={i} className="snuggle-fit" id={day} onDrop={this.handleDrop} onDragOver={this.handleAllowDrop}>
-                                <div>
+                                <div className="weekday">
                                     {day.split(" ")[0]}
                                 </div>
                                 {/* date prints with a space on one line when logged */}
-                                <div id={day} onClick={this.handleClick}>
+                                <div className = "weekdate" id={day} onClick={this.handleClick}>
                                     {day.split(" ").slice(1,3).join(" ")}
                                 </div>
                             </div>
