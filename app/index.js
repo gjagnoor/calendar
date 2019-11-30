@@ -7,8 +7,9 @@ import './styles/index.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import store from './store/store.js';
 import Notes from './components/notes/notes.js';
-import Date from './components/date.js';
 
 // to import store and connect it to the main component so child components can have access to state?
 
@@ -29,6 +30,8 @@ class Main extends React.Component {
 }
 
 ReactDOM.render(
-  <Main />,
+  <Provider store={store}>
+    <Main />
+  </Provider>,
   document.getElementById('app')
 );
