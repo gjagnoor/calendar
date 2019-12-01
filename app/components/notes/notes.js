@@ -11,19 +11,8 @@ class Notes extends React.Component {
 
     render () {
         return (
-            <div>
+            <div className="flex-row-center">
 
-                <div className="snuggle-fit">
-                    <Actions />
-                </div>
-
-                <div id="active-notes">
-                    <Active_Notes />
-                </div>
-
-                <div>
-                    <Completed_Notes />
-                </div>
                     
             </div>
         )
