@@ -9,8 +9,8 @@ class Notes extends React.Component {
         super (props);
     }
     render () {
-        const {next_3_days, tasks_today, tasks_tomorrow, tasks_day_after, handleChange, handleClick} = this.props;
-        var notes = [tasks_today, tasks_tomorrow, tasks_day_after];
+        const {next_3_days, tasks_today, tasks_tomorrow, tasks_day_after, handleChange, handleClick} = this.props
+        var notes = [tasks_today, tasks_tomorrow, tasks_day_after]
         return (
             <div className="flex-row-center dev-mode notes-outer">
                 {
@@ -41,12 +41,9 @@ class Notes extends React.Component {
                                         }): (null)
                                     }
                                 </div>                           
-                            )
-                        })
                             </div>
-                        )
-                    }): (null)
-                }                   
+                        )}): (null)
+                }                  
             </div>
         )
     }
