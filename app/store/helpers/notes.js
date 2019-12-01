@@ -1,5 +1,15 @@
 import {datestring} from './date_transformers.js';
 
+export function filter_for_notes (all_notes, date) {
+    return all_notes.filter((note) => {
+        var today = new Date(date);
+        var due_date = new Date(note.due_date);
+        if (today.valueOf() <= due_date.valueOf()) {
+            return note;
+        }
+    });
+}
+
 export function filter_for_active_notes (all_notes, calendar_date) {
     return all_notes.filter((note) => {
         if (!note.completed) {
