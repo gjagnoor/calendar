@@ -10,7 +10,6 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import store from './store/store.js';
 import Notes from './components/notes/notes.js';
-import Header from './components/header.js';
 import Week from './components/week.js';
 import Note_Form from './components/note-form';
 
@@ -23,23 +22,11 @@ class Main extends React.Component {
       <div className='flex-column-center snuggle-fit dev-mode' id='container-0'>
 
         <div>
-          <Header />
-        </div>
-
-        <div>
           <Week />
         </div>
 
-        <div className='flex-row-center snuggle-fit' id="container-0-2">
-          <div>
-            hi
-          </div>
-          <div>
-            hi
-          </div>
-          <div>
-            hi
-          </div>
+        <div className='snuggle-fit' id="container-0-2">
+          <Notes />
         </div>
 
         <div>
