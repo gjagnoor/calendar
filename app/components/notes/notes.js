@@ -23,6 +23,7 @@ class Notes extends React.Component {
                                 <div>
                                     {
                                         day ? day.map((note, j) => {
+                                            console.log(note);
                                             return (
                                                 <div className="note flex-row-center" key={j}>
                                                     <div>
@@ -61,7 +62,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         handleChange (evt) {
-            // updating note name
+            // updating note namec
+            console.log(evt.target.id)
             var update_to_name = evt.target.value;
             var note_id = evt.target.id;
             dispatch(update_note(note_id, 'name', update_to_name)); 
