@@ -32,7 +32,7 @@ class Notes extends React.Component {
                                                         <input className={checkbox_classname} id={note.id} name='name' type="text" value={note.name} onChange={handleChange} />
                                                     </div>
                                                     <div>
-                                                        <input className='complete' name="complete" type="checkbox" value={note.id} onClick={handleClick} checked={note.completed}/> 
+                                                        <input className='complete' name="complete" type="checkbox" value={note.id} onChange={handleChange} checked={note.completed}/> 
                                                     </div>
                                                     <div>
                                                         <button className="fas fa-trash-alt delete-note" name="delete-note" value={note.id} onClick={handleClick}></button>
@@ -65,15 +65,17 @@ const mapDispatchToProps = (dispatch) => {
     return {
         handleChange (evt) {
             // updating note namec
-            var update_to_name = evt.target.value;
-            var note_id = evt.target.id;
-            dispatch(update_note(note_id, 'name', update_to_name)); 
+            evt.target.checked === true ? dispatch(update_note(evt.target.value, 'complete', null)) : (null);
+            evt.target.checked === false ? dispatch(update_note(evt.target.value, 'incomplete', null)) : (null);
+            if (evt.target.name === 'name') {
+                var update_to_name = evt.target.value;
+                var note_id = evt.target.id;
+                dispatch(update_note(note_id, 'name', update_to_name)); 
+            }
         },
         handleClick (evt) {
             var note_id = evt.target.value;
             evt.target.name === 'delete-note' ? dispatch(delete_note(note_id)) : (null);
-            evt.target.checked === true ? dispatch(update_note(note_id, 'complete', null)) : (null);
-            evt.target.checked === false ? dispatch(update_note(note_id, 'incomplete', null)) : (null);
         },
         handleOnDrag (evt) {
             evt.dataTransfer.setData("id", evt.target.id);
