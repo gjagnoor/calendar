@@ -31,9 +31,7 @@ class Notes extends React.Component {
                                                         <input id={note.id} name='name' type="text" value={note.name} onChange={handleChange} />
                                                     </div>
                                                     <div>
-                                                        {
-                                                            note.completed ? <input className='complete' name="complete" type="checkbox" value={note.id} onClick={handleClick} checked/> : (<input className='incomplete' name="incomplete" type="checkbox" value={note.id} onClick={handleClick} />)
-                                                        }
+                                                        <input className='complete' name="complete" type="checkbox" value={note.id} onClick={handleClick} checked={note.completed}/> 
                                                     </div>
                                                     <div>
                                                         <button className="fas fa-trash-alt delete-note" name="delete-note" value={note.id} onClick={handleClick}></button>
@@ -74,7 +72,7 @@ const mapDispatchToProps = (dispatch) => {
             evt.target.name === 'delete-note' ? dispatch(delete_note(note_id)) : (null);
             evt.target.checked === true ? dispatch(update_note(note_id, 'complete', null)) : (null);
             evt.target.checked === false ? dispatch(update_note(note_id, 'incomplete', null)) : (null);
-            evt.preventDefault();
+            // evt.preventDefault();
         }
     }
 }
