@@ -25,8 +25,8 @@ export default function calendar (state = initialState, action) {
         case 'SET_CALENDAR_DATE': 
             return {
                 ...state,
-                calendar_date: action.date,
-                week: next_7_days(datestring(action.date))
+                calendar_date: action.date
+                // week: next_7_days(datestring(action.date))
             }
         default: 
             return state;

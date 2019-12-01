@@ -94,7 +94,7 @@ body {
             border: none;
         }
         .card-date {
-            color: #ebc342; // #14f3af;
+            color: #ebc342; 
             margin-bottom: 4%;
         }
         .complete {
@@ -119,6 +119,12 @@ body {
             color: rgb(78, 70, 70);
             font-size: 0.6em;
         }
+        // input[type="submit"] {
+        //     background-color: inherit;
+        //     outline: none;
+        //     border: 0.5px solid #14f3af;
+        //     border-radius: 50%;
+        // }
     }
 
 }
