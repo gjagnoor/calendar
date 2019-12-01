@@ -19,6 +19,7 @@ body {
         flex-direction: row;
         justify-content: space-evenly;
         flex-wrap: wrap;
+        margin: 1%;
     }
 
     .flex-row-left {
@@ -81,7 +82,7 @@ body {
     }   
 
     .notes-card {
-        width: 20%;
+        width: max-content;
         background-color: #303030;
         .text-field {
             margin-right: 7%;
