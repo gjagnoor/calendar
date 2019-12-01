@@ -8,10 +8,11 @@ class Completed_Notes extends React.Component {
     }
 
     render () {
+        const { completed_notes_on_date, handleClick, handleChange } = this.props;
         return (
             <div className="snuggle-fit">
                 {
-                    this.props.completed_notes_on_date ? this.props.completed_notes_on_date.map((note, i) => {
+                    completed_notes_on_date ? completed_notes_on_date.map((note, i) => {
                         return (
                             <div className='flex-row-left snuggle-fit complete' key={i}>
                                 <div className="note-name snuggle-fit">
@@ -19,10 +20,10 @@ class Completed_Notes extends React.Component {
                                 </div>
                                 <div className="flex-row-center complete-note-actions">
                                     <div>
-                                        <input className='checkbox' name = "incomplete" type="checkbox" value={note.id} onChange = {this.props.handleChange} checked/>
+                                        <input className='checkbox' name = "incomplete" type="checkbox" value={note.id} onChange = {handleChange} checked/>
                                     </div>
                                     <div>
-                                        <button className="fas fa-trash-alt delete-note" name="delete-button" value={note.id} onClick={this.props.handleClick}></button>
+                                        <button className="fas fa-trash-alt delete-note" name="delete-button" value={note.id} onClick={handleClick}></button>
                                     </div>
                                 </div>
                             </div>

@@ -7,7 +7,8 @@ class Header extends React.Component {
     }
 
     render () {
-        var date = new Date (this.props.calendar_date);
+        const { calendar_date} = this.props;
+        var date = new Date (calendar_date);
         date = date.toDateString();
         return (
             <div className='snuggle-fit text-align-center' id="date-rendering">
