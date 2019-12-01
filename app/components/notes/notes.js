@@ -9,7 +9,7 @@ class Notes extends React.Component {
         super (props);
     }
     render () {
-        const {next_3_days, tasks_today, tasks_tomorrow, tasks_day_after, handleChange, handleClick} = this.props
+        const {next_3_days, tasks_today, tasks_tomorrow, tasks_day_after, handleChange, handleClick, handleOnDrag} = this.props
         var notes = [tasks_today, tasks_tomorrow, tasks_day_after]
         return (
             <div className="flex-row-center-wrap notes-outer">
@@ -25,7 +25,7 @@ class Notes extends React.Component {
                                         day ? day.map((note, j) => {
                                             var checkbox_classname = note.completed ? "complete" : "incomplete";
                                             return (
-                                                <div className="note snuggle-fit flex-row-left" key={j}>
+                                                <div className="note snuggle-fit flex-row-left" key={j} id={note.id} draggable="true" onDragStart={handleOnDrag}>
                                                     <div className="text-field">
                                                         <input className={checkbox_classname} id={note.id} name='name' type="text" value={note.name} onChange={handleChange} />
                                                     </div>
@@ -71,7 +71,9 @@ const mapDispatchToProps = (dispatch) => {
             evt.target.name === 'delete-note' ? dispatch(delete_note(note_id)) : (null);
             evt.target.checked === true ? dispatch(update_note(note_id, 'complete', null)) : (null);
             evt.target.checked === false ? dispatch(update_note(note_id, 'incomplete', null)) : (null);
-            // evt.preventDefault();
+        },
+        handleOnDrag (evt) {
+            evt.dataTransfer.setData("id", evt.target.id);
         }
     }
 }

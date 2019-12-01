@@ -47,12 +47,13 @@ body {
         justify-content: left;
     }
 
-    .border-bottom {
-        border-bottom: 1px solid white;
+    .weekday {
+        color: #ebc342;
     }
 
+
     .snuggle-fit {
-        margin: 1%;
+        margin: 2%;
     }
 
     .text-center {
@@ -95,7 +96,7 @@ body {
             border: none;
         }
         .card-date {
-            color: #14f3af;
+            color: #ebc342; // #14f3af;
             margin-bottom: 4%;
         }
     
@@ -114,10 +115,6 @@ body {
             text-decoration: line-through;
             margin-left: 5%;
         }
-    }
-    
-    .weekday {
-        color: #ebc342;
     }
 
     #note-form {  
