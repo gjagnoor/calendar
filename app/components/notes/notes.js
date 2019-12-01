@@ -25,7 +25,7 @@ class Notes extends React.Component {
                                         day ? day.map((note, j) => {
                                             var checkbox_classname = note.completed ? "complete" : "incomplete";
                                             var future_classname = '';
-                                            due_date_in_future(today, note.due_date) ? future_classname = "note snuggle-fit flex-row-left due-another-day" : future_classname = "note snuggle-fit flex-row-left";
+                                            due_date_in_future(next_3_days[i], note.due_date) ? future_classname = "note snuggle-fit flex-row-left due-another-day" : future_classname = "note snuggle-fit flex-row-left";
                                             return (
                                                 <div className={future_classname} key={j} id={note.id} draggable="true" onDragStart={handleOnDrag}>
                                                     <div className="text-field">
