@@ -9,26 +9,26 @@ class Active_Notes extends React.Component {
     }
 
     render() {
-        console.log('active-notes component state:::', this.props)
+        const { notes_on_calendar_date_and_futuredate, current_date, handleChange, handleClick, handleOnDrag } = this.props
         return (
             <div className='snuggle-fit border-bottom'>
                 <div>
                     {                            
-                        this.props.notes_on_calendar_date_and_futuredate ? this.props.notes_on_calendar_date_and_futuredate.map((note, i)=> {
+                        notes_on_calendar_date_and_futuredate ? notes_on_calendar_date_and_futuredate.map((note, i)=> {
                             var class_val = '';
-                            due_date_in_future(this.props.current_date, note.due_date) ? class_val = "flex-row-left note snuggle-fit due-another-day" : class_val = "flex-row-left note snuggle-fit";
+                            due_date_in_future(current_date, note.due_date) ? class_val = "flex-row-left note snuggle-fit due-another-day" : class_val = "flex-row-left note snuggle-fit";
                             return (
-                                <div key = {i} className ={class_val} id={note.id} draggable="true" onDragStart={this.props.handleOnDrag}>
+                                <div key = {i} className ={class_val} id={note.id} draggable="true" onDragStart={handleOnDrag}>
                                     <div id="note-name">
-                                        <input id={note.id} name='name' type="text" value={note.name} onChange={this.props.handleChange} />
+                                        <input id={note.id} name='name' type="text" value={note.name} onChange={handleChange} />
                                     </div>
                                     <div className="flex-row-center note-actions">
                                         <div>
-                                            <input className='checkbox' name = "completed" type="checkbox" value={note.id} onClick={this.props.handleClick} />
+                                            <input className='checkbox' name = "completed" type="checkbox" value={note.id} onClick={handleClick} />
                                         </div>
                                         <div className="flex-row-right">
                                             <div>
-                                                <button className="fas fa-trash-alt delete-note" name="delete-active-note" value={note.id} onClick={this.props.handleClick}></button>
+                                                <button className="fas fa-trash-alt delete-note" name="delete-active-note" value={note.id} onClick={handleClick}></button>
                                             </div>
                                         </div>
                                     </div>
