@@ -99,21 +99,19 @@ body {
             color: #ebc342; // #14f3af;
             margin-bottom: 4%;
         }
-    
-        .due-another-day {
-            background-color: lightseagreen;
-            border-radius: 7px;
-    
-            input[type='text'] {
-                color: white;
-                background-color: lightseagreen;
-            }
-        }
-
         .complete {
             color: #14f3af;
             text-decoration: line-through;
             margin-left: 5%;
+        }
+        .due-another-day {
+            border-radius: 7px;
+            border: 0.5px solid lightseagreen;
+            padding-bottom: 1%;    
+            input[type='text'] {
+                color: white;
+                border-bottom: none;
+            }
         }
     }
 

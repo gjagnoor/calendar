@@ -1,7 +1,7 @@
 import React from 'react';
 import Actions from './actions.js';
 import {connect} from 'react-redux';
-import { filter_for_notes } from '../../store/helpers/notes.js';
+import { filter_for_notes, due_date_in_future } from '../../store/helpers/notes.js';
 import {update_note, delete_note} from '../../store/store.js';
 
 class Notes extends React.Component {
@@ -9,7 +9,7 @@ class Notes extends React.Component {
         super (props);
     }
     render () {
-        const {next_3_days, tasks_today, tasks_tomorrow, tasks_day_after, handleChange, handleClick, handleOnDrag} = this.props
+        const {today, next_3_days, tasks_today, tasks_tomorrow, tasks_day_after, handleChange, handleClick, handleOnDrag} = this.props
         var notes = [tasks_today, tasks_tomorrow, tasks_day_after]
         return (
             <div className="flex-row-center-wrap notes-outer">
@@ -24,8 +24,10 @@ class Notes extends React.Component {
                                     {
                                         day ? day.map((note, j) => {
                                             var checkbox_classname = note.completed ? "complete" : "incomplete";
+                                            var future_classname = '';
+                                            due_date_in_future(today, note.due_date) ? future_classname = "note snuggle-fit flex-row-left due-another-day" : future_classname = "note snuggle-fit flex-row-left";
                                             return (
-                                                <div className="note snuggle-fit flex-row-left" key={j} id={note.id} draggable="true" onDragStart={handleOnDrag}>
+                                                <div className={future_classname} key={j} id={note.id} draggable="true" onDragStart={handleOnDrag}>
                                                     <div className="text-field">
                                                         <input className={checkbox_classname} id={note.id} name='name' type="text" value={note.name} onChange={handleChange} />
                                                     </div>
@@ -51,6 +53,7 @@ class Notes extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
+        today: state.calendar.calendar_date,
         next_3_days: state.calendar.week.slice(0,4),
         tasks_today: filter_for_notes(state.tasks.notes, state.calendar.week.slice(0,1)), // returns active and inactive notes 
         tasks_tomorrow: filter_for_notes(state.tasks.notes, state.calendar.week.slice(1,2)),
