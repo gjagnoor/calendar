@@ -71,9 +71,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleClick (evt) {
             var note_id = evt.target.value;
-            evt.target.name === 'complete' ? dispatch(update_note(note_id, 'incomplete', null)) : (null);
-            evt.target.name === 'incomplete' ? dispatch(update_note(note_id, 'complete', null)) : (null);
             evt.target.name === 'delete-note' ? dispatch(delete_note(note_id)) : (null);
+            evt.target.checked === true ? dispatch(update_note(note_id, 'complete', null)) : (null);
+            evt.target.checked === false ? dispatch(update_note(note_id, 'incomplete', null)) : (null);
             evt.preventDefault();
         }
     }
