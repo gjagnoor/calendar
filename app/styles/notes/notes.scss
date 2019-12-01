@@ -2,15 +2,6 @@
     color: rgba(255, 0, 0, 0.664);
 }
 
-#notes-form {
-    width: 100%;
-    margin-top: 4%;
-
-    input[type='text'], input[type='date'] {
-        color: lightgrey;
-    }
-}
-
 #active-notes {
     input[type='text'], input:focus  {
         // background-color: lightgrey;

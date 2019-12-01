@@ -43,7 +43,7 @@ class Note_Form extends React.Component {
         var due_date_iso_format = toiso(this.state.tasks.note_to_add.due_date).split('T')[0]; 
         console.log('state from note-form-component', this.state);
         return (
-            <div>
+            <div id="note-form">
                 <form className='flex-row-center' onSubmit={this.handleSubmit}>
                     <div className='snuggle-fit'>
                         <input name="name" type="text" value={this.state.tasks.note_to_add.name} onChange={this.handleChange} />

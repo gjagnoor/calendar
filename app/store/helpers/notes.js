@@ -10,18 +10,6 @@ export function filter_for_notes (all_notes, date) {
     });
 }
 
-export function filter_for_active_notes (all_notes, calendar_date) {
-    return all_notes.filter((note) => {
-        if (!note.completed) {
-            var today = new Date(calendar_date);
-            var due_date = new Date(note.due_date);
-            if (today.valueOf() <= due_date.valueOf()) {
-                return note;
-            }
-        }
-    });  
-}
-
 export function due_date_in_future(calendar_date, due_date) {
     calendar_date = new Date(calendar_date);
     due_date = new Date(due_date);
@@ -31,7 +19,7 @@ export function due_date_in_future(calendar_date, due_date) {
 export function reset_note_to_add () {
     return {
         id: 0,
-        name: 'please add a task for the day',
+        name: 'add a task...',
         due_date: datestring(Date.now()),
         completed: false
     };

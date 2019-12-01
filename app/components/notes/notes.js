@@ -17,7 +17,7 @@ class Notes extends React.Component {
                     notes ? notes.map((day, i) => {
                         return (
                             <div className="notes-card flex-column-center" key={i}>
-                                <div className="card-date">
+                                <div className="card-date text-center">
                                     {next_3_days[i]}
                                 </div>                               
                                 <div className="notes snuggle-fit">

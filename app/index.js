@@ -19,7 +19,7 @@ class Main extends React.Component {
 
   render () {
     return (
-      <div className='flex-column-center snuggle-fit dev-mode' id='container-0'>
+      <div className='flex-column-center dev-mode'>
 
         <div>
           <Week />
@@ -29,7 +29,7 @@ class Main extends React.Component {
           <Note_Form />
         </div>
 
-        <div className='snuggle-fit'>
+        <div>
           <Notes />
         </div>
 
