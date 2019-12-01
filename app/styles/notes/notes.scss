@@ -83,7 +83,7 @@
 }
 
 .weekday {
-    color: whitesmoke;
+    color: #ebc342;
 }
 
 #download {
@@ -100,11 +100,9 @@ input[type='submit'] {
     padding: 0%;
     border: none;
     border-radius: 50%;
-    margin-left: 21%;
-    margin-top: 0.05%;
-    width: 2em;
-    height: 2em;
-    font-size: 2em;
+    width: 3em;
+    height: 3em;
+    font-size: 10px;
     background-color: #ebc342;
     color: white;
     position: absolute;

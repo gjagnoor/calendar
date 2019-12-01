@@ -1,5 +1,5 @@
 import React from 'react';
-import { set_calendar_date, update_note } from '../../store/store.js';
+import { set_calendar_date, update_note } from '../store/store.js';
 import {connect} from 'react-redux';
 
 class Week extends React.Component {

@@ -55,7 +55,8 @@ body {
     }
 
     input[type='text'], input[type='date'], input:focus {
-        background-color: #303030;
+        background-color: whitesmoke;
+        color: #303030;
         outline: none;
         border: none;
         border-bottom: 0.5px solid lightgrey;

@@ -1,10 +1,7 @@
 import React from 'react';
-import Note_Form from './note-form.js';
 import Active_Notes from './active-notes.js';
 import Completed_Notes from './completed_notes.js';
-import Header from './header.js';
 import Actions from './actions.js';
-import Week from './week.js';
 
 class Notes extends React.Component {
 
@@ -14,18 +11,10 @@ class Notes extends React.Component {
 
     render () {
         return (
-            <div className='flex-column-center'>
+            <div>
 
                 <div className="snuggle-fit">
                     <Actions />
-                </div>
-
-                <div>
-                    <Header />
-                </div>
-
-                <div>
-                    <Week />
                 </div>
 
                 <div id="active-notes">
@@ -34,10 +23,6 @@ class Notes extends React.Component {
 
                 <div>
                     <Completed_Notes />
-                </div>
-
-                <div id='notes-form'>
-                    <Note_Form /> 
                 </div>
                     
             </div>
