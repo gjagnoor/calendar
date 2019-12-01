@@ -119,12 +119,20 @@ body {
             color: rgb(78, 70, 70);
             font-size: 0.6em;
         }
-        // input[type="submit"] {
-        //     background-color: inherit;
-        //     outline: none;
-        //     border: 0.5px solid #14f3af;
-        //     border-radius: 50%;
-        // }
+        input[type="date"]::-webkit-inner-spin-button{
+            display: none;
+          }
+        input[type="date"]::-webkit-calendar-picker-indicator{
+            opacity: 0;
+        }
+        input[type="submit"]{
+            background-color: inherit;
+            outline: none;
+            font-size: 0.5em;
+            border: 1px solid #14f3af;
+            color: lightgrey;
+            border-radius: 50%;
+        }
     }
 
 }
