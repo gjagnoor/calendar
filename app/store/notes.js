@@ -96,10 +96,10 @@ export default function tasks (state = initialState, action) {
                 ...state,
                 notes: state.notes.map((note) => {
                   if (note.id === Number(action.id)) {
-                    if (action.key === 'completed') {
-                        note.completed = true;
-                    } else if (action.key === 'incomplete') {
+                    if (action.key === 'complete') {
                         note.completed = false;
+                    } else if (action.key === 'incomplete') {
+                        note.completed = true;
                     } else if (action.key === 'name') {
                         note.name = action.data;
                     } else if (action.key === 'due_date') {

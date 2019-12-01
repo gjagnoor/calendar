@@ -11,6 +11,7 @@ class Notes extends React.Component {
     render () {
         const {next_3_days, tasks_today, tasks_tomorrow, tasks_day_after, handleChange, handleClick} = this.props
         var notes = [tasks_today, tasks_tomorrow, tasks_day_after]
+        console.log('props', this.props);
         return (
             <div className="flex-row-center dev-mode notes-outer">
                 {
@@ -31,11 +32,11 @@ class Notes extends React.Component {
                                                     </div>
                                                     <div>
                                                         {
-                                                            note.completed ? <input className='checkbox complete' name="complete" type="checkbox" value={note.id} onClick={handleClick} checked/> : (<input className='checkbox incomplete' name="incomplete" type="checkbox" value={note.id} onClick={handleClick} />)
+                                                            note.completed ? <input className='complete' name="complete" type="checkbox" value={note.id} onClick={handleClick} checked/> : (<input className='incomplete' name="incomplete" type="checkbox" value={note.id} onClick={handleClick} />)
                                                         }
                                                     </div>
                                                     <div>
-                                                        <button className="fas fa-trash-alt delete-note" value={note.id} onClick={handleClick}></button>
+                                                        <button className="fas fa-trash-alt delete-note" name="delete-note" value={note.id} onClick={handleClick}></button>
                                                     </div>
                                                 </div>
                                             )
@@ -43,7 +44,8 @@ class Notes extends React.Component {
                                     }
                                 </div>                           
                             </div>
-                        )}): (null)
+                        )
+                    }): (null)
                 }                  
             </div>
         )
@@ -63,16 +65,15 @@ const mapDispatchToProps = (dispatch) => {
     return {
         handleChange (evt) {
             // updating note namec
-            console.log(evt.target.id)
             var update_to_name = evt.target.value;
             var note_id = evt.target.id;
             dispatch(update_note(note_id, 'name', update_to_name)); 
         },
         handleClick (evt) {
             var note_id = evt.target.value;
-            evt.target.checked === false && evt.target.name === 'incomplete' ? dispatch(update_note(note_id, 'incomplete')) : (null);
-            evt.target.checked === true && evt.target.name === 'completed' ? dispatch(update_note(note_id, 'completed', null)) : (null);
-            evt.target.name === 'delete-active-note' ? dispatch(delete_note(note_id)) : (null);
+            evt.target.name === 'complete' ? dispatch(update_note(note_id, 'incomplete', null)) : (null);
+            evt.target.name === 'incomplete' ? dispatch(update_note(note_id, 'complete', null)) : (null);
+            evt.target.name === 'delete-note' ? dispatch(delete_note(note_id)) : (null);
             evt.preventDefault();
         }
     }
