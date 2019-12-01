@@ -11,7 +11,6 @@ class Notes extends React.Component {
     render () {
         const {next_3_days, tasks_today, tasks_tomorrow, tasks_day_after, handleChange, handleClick} = this.props
         var notes = [tasks_today, tasks_tomorrow, tasks_day_after]
-        console.log('props', this.props);
         return (
             <div className="flex-row-center dev-mode notes-outer">
                 {
