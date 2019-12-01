@@ -22,22 +22,6 @@
         border: none;
     }
 
-    .note {
-        width: fit-content;
-        margin: 3%;
-        border-left: 3px solid crimson;
-    }
-
-    .due-another-day {
-        background-color: lightseagreen;
-        border-radius: 7px;
-
-        input[type='text'] {
-            color: white;
-            background-color: lightseagreen;
-        }
-    }
-
     .due-in-3-days {
         background-color: crimson;
 
@@ -52,39 +36,7 @@
     }
 }
 
-.complete {
-    color: #14f3af;
-    // font-size: 0.7em;
-    text-decoration: line-through;
-    // width: 60vw;
-    // margin-left: 3%;
-    border-left: 3px solid crimson;  
-    .note-name {
-        margin-left: 1%;
-    }
-    .complete-note-actions {
-        width: fit-content;
-        // margin-left: 36.55vw;
-    }    
-}
 
-.delete-note {
-    // background-color: #303030;
-    color: crimson;
-    border: none;
-    margin-left: 10%;
-}
-.weekdate {
-    color: #2888a5;
-}
-
-.weekdate:hover {
-    text-decoration: underline;
-}
-
-.weekday {
-    color: #ebc342;
-}
 
 #download {
     color: #ebc342;
@@ -96,15 +48,3 @@
     border-radius: 7px;
 }
 
-input[type='submit'] {
-    padding: 0%;
-    border: none;
-    border-radius: 50%;
-    width: 3em;
-    height: 3em;
-    font-size: 10px;
-    background-color: #ebc342;
-    color: white;
-    position: absolute;
-    z-index: 1;
-}

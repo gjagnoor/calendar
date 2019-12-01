@@ -17,8 +17,7 @@ body {
     .flex-row-center-wrap {
         display: flex;
         flex-direction: row;
-        justify-content: center;
-        // margin: 1%;
+        justify-content: space-evenly;
         flex-wrap: wrap;
     }
 
@@ -66,11 +65,13 @@ body {
     }
 
     input[type='text'], input[type='date'], input:focus {
-        background-color: whitesmoke;
-        color: #303030;
+        background-color: #303030;
+        color: lightsteelblue;
         outline: none;
         border: none;
         border-bottom: 0.5px solid lightgrey;
+        font-size: 0.7em;
+        font-family: 'Courier New', Courier, monospace;
         width: max-content;
     }   
 
@@ -93,11 +94,61 @@ body {
     }
 
     .notes-card {
-        width: fit-content;
+        width: 20%;
+        background-color: #303030;
     }
 
-    .notes {
-        margin-top: 2%;
+    .note {
+        border-left: 3px solid crimson;
+
+    }
+
+    .delete-note {
+        background-color: #303030;
+        color: crimson;
+        border: none;
+        // margin-left: 10%;
+    }
+    .weekdate {
+        color: #2888a5;
+    }
+    
+    .weekdate:hover {
+        text-decoration: underline;
+    }
+    
+    .weekday {
+        color: #ebc342;
+    }
+
+    .complete {
+        color: #14f3af;
+        // font-size: 0.7em;
+        text-decoration: line-through;
+        // width: 60vw;
+        // margin-left: 3%;
+        border-left: 3px solid crimson;  
+        .note-name {
+            margin-left: 1%;
+        }
+        .complete-note-actions {
+            width: fit-content;
+            // margin-left: 36.55vw;
+        }    
+    }
+
+    .card-date {
+        color: #14f3af;
+    }
+
+    .due-another-day {
+        background-color: lightseagreen;
+        border-radius: 7px;
+
+        input[type='text'] {
+            color: white;
+            background-color: lightseagreen;
+        }
     }
 
 }

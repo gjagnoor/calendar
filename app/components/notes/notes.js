@@ -12,19 +12,19 @@ class Notes extends React.Component {
         const {next_3_days, tasks_today, tasks_tomorrow, tasks_day_after, handleChange, handleClick} = this.props
         var notes = [tasks_today, tasks_tomorrow, tasks_day_after]
         return (
-            <div className="flex-row-center-wrap dev-mode notes-outer">
+            <div className="flex-row-center-wrap notes-outer">
                 {
                     notes ? notes.map((day, i) => {
                         return (
-                            <div className="notes-card flex-column-center dev-mode" key={i}>
-                                <div>
+                            <div className="notes-card flex-column-center" key={i}>
+                                <div className="card-date">
                                     {next_3_days[i]}
                                 </div>                               
                                 <div className="notes snuggle-fit">
                                     {
                                         day ? day.map((note, j) => {
                                             return (
-                                                <div className="note flex-row-left" key={j}>
+                                                <div className="note snuggle-fit flex-row-left" key={j}>
                                                     <div className="text-field">
                                                         <input id={note.id} name='name' type="text" value={note.name} onChange={handleChange} />
                                                     </div>
