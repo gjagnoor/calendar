@@ -25,7 +25,7 @@ class Main extends React.Component {
           <Week />
         </div>
 
-        <div className='snuggle-fit' id="container-0-2">
+        <div className='snuggle-fit'>
           <Notes />
         </div>
 

@@ -12,7 +12,7 @@ class Notes extends React.Component {
         const {next_3_days, tasks_today, tasks_tomorrow, tasks_day_after, handleChange, handleClick} = this.props
         var notes = [tasks_today, tasks_tomorrow, tasks_day_after]
         return (
-            <div className="flex-row-center dev-mode notes-outer">
+            <div className="flex-row-center-wrap dev-mode notes-outer">
                 {
                     notes ? notes.map((day, i) => {
                         return (
@@ -20,14 +20,13 @@ class Notes extends React.Component {
                                 <div>
                                     {next_3_days[i]}
                                 </div>                               
-                                <div>
+                                <div className="notes snuggle-fit">
                                     {
                                         day ? day.map((note, j) => {
-                                            console.log(note);
                                             return (
                                                 <div className="note flex-row-center" key={j}>
-                                                    <div>
-                                                        <input id={note.id} name='name' type="text" value={note.name} onChange={handleChange} />
+                                                    <div className="text-field">
+                                                        <textarea id={note.id} name='name' type="text" value={note.name} onChange={handleChange} />
                                                     </div>
                                                     <div>
                                                         <input className='complete' name="complete" type="checkbox" value={note.id} onClick={handleClick} checked={note.completed}/> 

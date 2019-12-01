@@ -4,7 +4,7 @@
 // styles shared by notes and calendar component
 body {
     background-color: whitesmoke;
-    font-size: 1em;
+    font-size: 2em;
     font-family: 'Courier New', Courier, monospace;
 
     .flex-row-center {
@@ -12,7 +12,14 @@ body {
         flex-direction: row;
         justify-content: center;
         margin: 1%;
-        padding: 1%;
+    }
+
+    .flex-row-center-wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        // margin: 1%;
+        flex-wrap: wrap;
     }
 
     .flex-row-left {
@@ -30,7 +37,7 @@ body {
     .flex-column-center {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: left;
         margin: 1%;
         padding: 1%;
     }
@@ -64,15 +71,35 @@ body {
         outline: none;
         border: none;
         border-bottom: 0.5px solid lightgrey;
+        width: max-content;
     }   
+
+    textarea {
+        background-color: whitesmoke;
+        color: #303030;
+        outline: none;
+        border: none;
+        border-bottom: 0.5px solid lightgrey;
+        width: max-content;
+    }
+
+    .text-field {
+        margin-right: 2%;
+    }
 
     #container-0 {
         width: 100%;
-        #container-0-2 {
-            // width: 50%;
-            border-radius: 7px;
-        }
+        
     }
+
+    .notes-card {
+        width: fit-content;
+    }
+
+    .notes {
+        margin-top: 2%;
+    }
+
 }
 
 
