@@ -76,6 +76,7 @@ body {
         font-size: 0.5em;
         font-family: 'Courier New', Courier, monospace;
         width: max-content;
+        margin-left: 5%;
     }   
 
     .notes-card {
@@ -107,26 +108,16 @@ body {
                 background-color: lightseagreen;
             }
         }
+
+        .complete {
+            color: #14f3af;
+            text-decoration: line-through;
+            margin-left: 5%;
+        }
     }
     
     .weekday {
         color: #ebc342;
-    }
-
-    .complete {
-        color: #14f3af;
-        // font-size: 0.7em;
-        text-decoration: line-through;
-        // width: 60vw;
-        // margin-left: 3%;
-        border-left: 3px solid crimson;  
-        .note-name {
-            margin-left: 1%;
-        }
-        .complete-note-actions {
-            width: fit-content;
-            // margin-left: 36.55vw;
-        }    
     }
 
     #note-form {  

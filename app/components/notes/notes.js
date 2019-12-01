@@ -23,10 +23,11 @@ class Notes extends React.Component {
                                 <div className="notes snuggle-fit">
                                     {
                                         day ? day.map((note, j) => {
+                                            var checkbox_classname = note.completed ? "complete" : "incomplete";
                                             return (
                                                 <div className="note snuggle-fit flex-row-left" key={j}>
                                                     <div className="text-field">
-                                                        <input id={note.id} name='name' type="text" value={note.name} onChange={handleChange} />
+                                                        <input className={checkbox_classname} id={note.id} name='name' type="text" value={note.name} onChange={handleChange} />
                                                     </div>
                                                     <div>
                                                         <input className='complete' name="complete" type="checkbox" value={note.id} onClick={handleClick} checked={note.completed}/> 
