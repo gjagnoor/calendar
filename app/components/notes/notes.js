@@ -24,9 +24,9 @@ class Notes extends React.Component {
                                     {
                                         day ? day.map((note, j) => {
                                             return (
-                                                <div className="note flex-row-center" key={j}>
+                                                <div className="note flex-row-left" key={j}>
                                                     <div className="text-field">
-                                                        <textarea id={note.id} name='name' type="text" value={note.name} onChange={handleChange} />
+                                                        <input id={note.id} name='name' type="text" value={note.name} onChange={handleChange} />
                                                     </div>
                                                     <div>
                                                         <input className='complete' name="complete" type="checkbox" value={note.id} onClick={handleClick} checked={note.completed}/> 

@@ -25,12 +25,12 @@ class Main extends React.Component {
           <Week />
         </div>
 
-        <div className='snuggle-fit'>
-          <Notes />
-        </div>
-
         <div>
           <Note_Form />
+        </div>
+
+        <div className='snuggle-fit'>
+          <Notes />
         </div>
 
       </div>
