@@ -1,5 +1,5 @@
 import React from 'react';
-import { set_calendar_date, update_note } from '../store/store.js';
+import { set_calendar_date, update_note, set_next_week } from '../store/store.js';
 import {connect} from 'react-redux';
 
 class Week extends React.Component {
@@ -22,11 +22,11 @@ class Week extends React.Component {
                                 <div className = "weekdate" id={day} onClick={this.props.handleClick}>
                                     {day.split(" ").slice(1,3).join(" ")}
                                 </div>
+                                <div className="next-week arrows fas fa-angle-right" id={day} onClick={this.props.handleClick}></div>
                             </div>
                         )
                     })                   
                 }
-                <div className="arrows fas fa-angle-right"></div>
             </div>
         )
     }
@@ -41,8 +41,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         handleClick (evt) {
-            var date_selected = evt.target.id;
-            return dispatch(set_calendar_date(date_selected));
+            console.log(evt.target.className.slice(0,10))
+            evt.target.className.slice(0,10).trim() === 'next-week' ? dispatch(set_next_week(evt.target.id)) : (console.log('nothing'));
+            evt.target.className === 'weekdate' ? dispatch(set_calendar_date(evt.target.id)) : (null);
+            // var date_selected = evt.target.id;
+            // return dispatch(set_calendar_date(date_selected));
         },   
         handleDrop (evt) {
             var move_to_date = evt.target.id;

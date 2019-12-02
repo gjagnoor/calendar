@@ -12,10 +12,17 @@ var initialState = {
 
 // action types 
 const SET_CALENDAR_DATE = 'SET_CALENDAR_DATE';
+const SET_NEXT_WEEK = 'SET_NEXT_WEEK';
 
 // action creators
 export function set_calendar_date (date) {
     const action = { type: SET_CALENDAR_DATE, date };
+    return action;
+}
+
+export function set_next_week (first_day) {
+    console.log(first_day)
+    const action = { type: SET_NEXT_WEEK, first_day};
     return action;
 }
 
@@ -27,6 +34,11 @@ export default function calendar (state = initialState, action) {
                 ...state,
                 calendar_date: action.date,
                 week: next_7_days(action.date)
+            }
+        case 'SET_NEXT_WEEK': 
+            return {
+                ...state,
+                week: next_7_days(action.first_day)
             }
         default: 
             return state;

@@ -22,7 +22,6 @@ Date.prototype.addDays = function (date, days) {
 }
 
 export function next_7_days (date) {
-  console.log(date);
   var new_date = new Date(date);
   var week = [];
   for (var i = 0; i <= 7; i++) {
