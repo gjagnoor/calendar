@@ -1,7 +1,7 @@
 import React from 'react';
-import store, {write_note, add_note, set_calendar_date} from '../../store/store.js';
-import {datestring, toiso} from '../../store/helpers/date_transformers.js';
-import {reset_note_to_add} from '../../store/helpers/notes.js';
+import store, {write_note, add_note, set_calendar_date} from '../store/store.js';
+import {datestring, toiso} from '../store/helpers/date_transformers.js';
+import {reset_note_to_add} from '../store/helpers/notes.js';
 
 class Note_Form extends React.Component {
     constructor (props) {
@@ -43,18 +43,16 @@ class Note_Form extends React.Component {
         var due_date_iso_format = toiso(this.state.tasks.note_to_add.due_date).split('T')[0]; 
         console.log('state from note-form-component', this.state);
         return (
-            <div>
-                <form className='flex-column-center' onSubmit={this.handleSubmit}>
-                    <div className="flex-row-center">
-                        <div className='snuggle-fit'>
-                            <input name="name" type="text" value={this.state.tasks.note_to_add.name} onChange={this.handleChange} />
-                        </div>
-                        {/* convert date to iso format before passing it to value field */}
-                        <div className='snuggle-fit'>
-                            <input name="due_date" type="date" value = {due_date_iso_format} onChange={this.handleChange} />
-                        </div>
+            <div id="note-form">
+                <form className='flex-row-center' onSubmit={this.handleSubmit}>
+                    <div className='snuggle-fit'>
+                        <input name="name" type="text" value={this.state.tasks.note_to_add.name} onChange={this.handleChange} />
                     </div>
-                    <div id = "note-submit" className='snuggle-fit'>
+                    {/* convert date to iso format before passing it to value field */}
+                    <div className='snuggle-fit'>
+                        <input name="due_date" type="date" value = {due_date_iso_format} onChange={this.handleChange} />
+                    </div>
+                    <div id = "note-submit" className="snuggle-fit">
                         <input name="submit" type="submit" value="+" />
                     </div>
                 </form>

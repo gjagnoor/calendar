@@ -27,7 +27,7 @@ class Actions extends React.Component {
 
     render () {
         return (
-            <div className="flex-row-right snuggle-fit">
+            <div className="flex-row-right">
                 <div id="download" className="fas fa-download" onClick = {this.handleClick}></div>
             </div>
         )

@@ -4,31 +4,39 @@
 // styles shared by notes and calendar component
 body {
     background-color: whitesmoke;
-    font-size: 1em;
+    font-size: 2em;
     font-family: 'Courier New', Courier, monospace;
 
     .flex-row-center {
         display: flex;
         flex-direction: row;
-        justify-content: center; 
+        justify-content: center;
+        margin: 1%;
+        flex-wrap: wrap;
+    }
+
+    .flex-row-center-wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        margin: 1%;
     }
 
     .flex-row-left {
         display: flex;
         flex-direction: row;
         justify-content: left;
+        flex-wrap: wrap;
     }
 
-    .flex-row-right {
-        display: flex;
-        flex-direction: row;
-        justify-content: right;
-    }
 
     .flex-column-center {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: left;
+        margin: 1%;
+        padding: 1%;
     }
 
     .flex-column-left {
@@ -37,38 +45,100 @@ body {
         justify-content: left;
     }
 
-    .border-bottom {
-        border-bottom: 1px solid white;
+    .weekday {
+        color: #ebc342;
     }
 
-    .dev-mode {
-        border: 1px solid red;
-    }
 
     .snuggle-fit {
-        margin: 1%;
-        padding: 1%;
+        margin: 2%;
     }
 
-    .text-align-center {
+    .text-center {
         text-align: center;
+    }
+
+    .weekdate {
+        color: #2888a5;
+    }
+    
+    .weekdate:hover {
+        text-decoration: underline;
     }
 
     input[type='text'], input[type='date'], input:focus {
         background-color: #303030;
+        color: lightsteelblue;
         outline: none;
         border: none;
         border-bottom: 0.5px solid lightgrey;
+        font-size: 0.5em;
+        font-family: 'Courier New', Courier, monospace;
+        width: max-content;
+        margin-left: 5%;
     }   
 
-    #container-0 {
-        width: 100%;
-        #container-0-2 {
+    .notes-card {
+        width: max-content;
+        background-color: #303030;
+        .text-field {
+            margin-right: 5%;
+        }
+        .note {
+            border-left: 3px solid crimson;
+            margin-bottom: 7%;
+        }
+        .delete-note {
             background-color: #303030;
-            width: 50%;
+            color: crimson;
+            border: none;
+        }
+        .card-date {
+            color: #ebc342; 
+            margin-bottom: 4%;
+        }
+        .complete {
+            color: #14f3af;
+            text-decoration: line-through;
+            margin-left: 5%;
+        }
+        .due-another-day {
             border-radius: 7px;
+            border: 0.5px solid lightseagreen;
+            padding-bottom: 1%;    
+            input[type='text'] {
+                color: white;
+                border-bottom: none;
+            }
         }
     }
+
+    #note-form {  
+        input[type='text'], input[type='date'] {
+            background-color: inherit;
+            color: rgb(78, 70, 70);
+            font-size: 0.6em;
+        }
+        input[type="date"]::-webkit-inner-spin-button{
+            display: none;
+          }
+        input[type="date"]::-webkit-calendar-picker-indicator{
+            opacity: 0;
+        }
+        input[type="submit"]{
+            background-color: inherit;
+            outline: none;
+            font-size: 0.5em;
+            border: 1px solid #14f3af;
+            color: lightgrey;
+            border-radius: 50%;
+        }
+    }
+
+    .arrows {
+        color: crimson;
+    }
+
 }
 
 

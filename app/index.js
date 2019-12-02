@@ -10,6 +10,8 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import store from './store/store.js';
 import Notes from './components/notes/notes.js';
+import Week from './components/week.js';
+import Note_Form from './components/note-form';
 
 // to import store and connect it to the main component so child components can have access to state?
 
@@ -17,9 +19,17 @@ class Main extends React.Component {
 
   render () {
     return (
-      <div className='flex-row-center snuggle-fit dev-mode' id='container-0'>
+      <div className='flex-column-center dev-mode'>
 
-        <div className='snuggle-fit' id="container-0-2">
+        <div>
+          <Week />
+        </div>
+
+        <div>
+          <Note_Form />
+        </div>
+
+        <div>
           <Notes />
         </div>
 
