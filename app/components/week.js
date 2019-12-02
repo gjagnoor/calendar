@@ -10,6 +10,7 @@ class Week extends React.Component {
     render () {
         return (
             <div className="flex-row-center">
+                <div className="arrows fas fa-angle-left"></div>
                 {
                     this.props.week.map((day, i) => {
                         return (
@@ -25,6 +26,7 @@ class Week extends React.Component {
                         )
                     })                   
                 }
+                <div className="arrows fas fa-angle-right"></div>
             </div>
         )
     }
