@@ -30,3 +30,18 @@ export function next_7_days (date) {
   }
   return week;
 }
+
+Date.prototype.subtractDays = function (date, days) {
+  date.setDate(date.getDate() - days)
+  return date.toDateString();
+}
+
+export function last_7_days (last_day) {
+  var new_date = new Date(last_day);
+  var week = [];
+  for (var i = 0; i <= 7; i++) {
+    var next_date = new Date(new_date.getTime());
+    week.unshift(next_date.subtractDays(next_date, i));
+  }
+  return week;
+}

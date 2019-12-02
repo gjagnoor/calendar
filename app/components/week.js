@@ -1,5 +1,5 @@
 import React from 'react';
-import { set_calendar_date, update_note, set_next_week } from '../store/store.js';
+import { set_calendar_date, update_note, set_next_week, set_last_week } from '../store/store.js';
 import {connect} from 'react-redux';
 
 class Week extends React.Component {
@@ -10,11 +10,11 @@ class Week extends React.Component {
     render () {
         return (
             <div className="flex-row-center">
-                <div className="arrows fas fa-angle-left"></div>
                 {
                     this.props.week.map((day, i) => {
                         return (
                             <div key={i} className="snuggle-fit" id={day} onDrop={this.props.handleDrop} onDragOver={this.props.handleAllowDrop}>
+                                <div id={day} onClick={this.props.handleClick} className="last-week arrows fas fa-angle-left"></div>
                                 <div className="weekday">
                                     {day.split(" ")[0]}
                                 </div>
@@ -42,7 +42,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         handleClick (evt) {
             console.log(evt.target.className.slice(0,10))
-            evt.target.className.slice(0,10).trim() === 'next-week' ? dispatch(set_next_week(evt.target.id)) : (console.log('nothing'));
+            evt.target.className.slice(0,10).trim() === 'last-week' ? dispatch(set_last_week(evt.target.id)) : (null);
+            evt.target.className.slice(0,10).trim() === 'next-week' ? dispatch(set_next_week(evt.target.id)) : (null);
             evt.target.className === 'weekdate' ? dispatch(set_calendar_date(evt.target.id)) : (null);
             // var date_selected = evt.target.id;
             // return dispatch(set_calendar_date(date_selected));
