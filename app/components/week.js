@@ -8,25 +8,27 @@ class Week extends React.Component {
     }
 
     render () {
+        const {handleClick, handleAllowDrop, handleDrop, first_day, last_day, week} = this.props;
+        console.log('here', this.props.week.slice().pop())
         return (
             <div className="flex-row-center">
+                <div id={first_day} onClick={handleClick} className="last-week arrows fas fa-angle-left"></div>
                 {
-                    this.props.week.map((day, i) => {
+                    week.map((day, i) => {
                         return (
-                            <div key={i} className="snuggle-fit" id={day} onDrop={this.props.handleDrop} onDragOver={this.props.handleAllowDrop}>
-                                <div id={day} onClick={this.props.handleClick} className="last-week arrows fas fa-angle-left"></div>
+                            <div key={i} className="snuggle-fit" id={day} onDrop={handleDrop} onDragOver={handleAllowDrop}>
                                 <div className="weekday">
                                     {day.split(" ")[0]}
                                 </div>
                                 {/* date prints with a space on one line when logged */}
-                                <div className = "weekdate" id={day} onClick={this.props.handleClick}>
+                                <div className = "weekdate" id={day} onClick={handleClick}>
                                     {day.split(" ").slice(1,3).join(" ")}
                                 </div>
-                                <div className="next-week arrows fas fa-angle-right" id={day} onClick={this.props.handleClick}></div>
                             </div>
                         )
                     })                   
                 }
+                <div className="next-week arrows fas fa-angle-right" id={last_day} onClick={handleClick}></div>
             </div>
         )
     }
@@ -34,19 +36,19 @@ class Week extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        week: state.calendar.week
+        week: state.calendar.week,
+        last_day: state.calendar.week.slice().pop(),
+        first_day: state.calendar.week.slice().shift()
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         handleClick (evt) {
-            console.log(evt.target.className.slice(0,10))
+            console.log('here here', evt.target.id)
             evt.target.className.slice(0,10).trim() === 'last-week' ? dispatch(set_last_week(evt.target.id)) : (null);
             evt.target.className.slice(0,10).trim() === 'next-week' ? dispatch(set_next_week(evt.target.id)) : (null);
             evt.target.className === 'weekdate' ? dispatch(set_calendar_date(evt.target.id)) : (null);
-            // var date_selected = evt.target.id;
-            // return dispatch(set_calendar_date(date_selected));
         },   
         handleDrop (evt) {
             var move_to_date = evt.target.id;
