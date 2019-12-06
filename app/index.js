@@ -12,6 +12,8 @@ import store from './store/store.js';
 import Notes from './components/notes/notes.js';
 import Week from './components/week.js';
 import Note_Form from './components/note-form';
+import stars from './download.jpg';
+
 
 // to import store and connect it to the main component so child components can have access to state?
 
@@ -32,6 +34,8 @@ class Main extends React.Component {
         <div>
           <Notes />
         </div>
+
+        <img src={stars} />
 
       </div>
 
