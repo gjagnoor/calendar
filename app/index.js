@@ -35,7 +35,7 @@ class Main extends React.Component {
           <Notes />
         </div>
 
-        <img src={stars} />
+        {/* <img src={stars} /> */}
 
       </div>
 
