@@ -5,7 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "file-loader": "^5.0.2",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
     "react-redux": "^5.0.7",
